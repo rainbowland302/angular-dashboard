@@ -64,7 +64,8 @@ module.exports = function (options) {
 
       'polyfills': './src/polyfills.browser.ts',
       'main':      AOT ? './src/main.browser.aot.ts' :
-                  './src/main.browser.ts'
+                  './src/main.browser.ts',
+      'vendor': './src/vendor.ts'
 
     },
 
@@ -86,7 +87,10 @@ module.exports = function (options) {
        * An array of directory names to be resolved to the current directory
        */
       modules: [helpers.root('src'), helpers.root('node_modules')],
-
+      alias: {
+        'custom-elements': require('path').resolve(__dirname, '../node_modules/@webcomponents/custom-elements/custom-elements.min.js'),
+        'clarity-icons': require('path').resolve(__dirname, '../node_modules/clarity-icons/clarity-icons.min.js'),
+      }
     },
 
     /**

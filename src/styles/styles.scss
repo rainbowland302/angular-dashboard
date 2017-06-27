@@ -1,7 +1,10 @@
 /* this file will be extracted to main dist folder and is imported in index.html */
-/* This file is for setting global styles  */
-@import 'variables';
 
+
+/* This file is for setting global styles  */
+
+@import 'variables';
+// @import './component';
 nav {
   margin-top: 16px;
 }
@@ -16,4 +19,112 @@ nav a {
   text-align: center;
   text-decoration: none;
   border-radius: 4px;
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.app-wrapper {
+  font-family: cursive;
+}
+
+.section {
+  padding: 20px 30px;
+  &:not(:last-child) {
+    border-bottom: 2px dotted deepskyblue
+  }
+}
+
+.section.flex, .ngx-chart {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.pie-wrapper,
+.bar-wrapper,
+.line-wrapper,
+.row {
+  float: left;
+  @include clearfix();
+}
+
+// Section 1
+.pie-title {
+  text-align: center;
+}
+.sub-title {
+  font-size: 30px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+}
+
+.pie-section {
+  flex: 2;
+}
+
+.bar-section {
+  flex: 3;
+  padding: 50px 0;
+}
+
+.bar-wrapper {
+  .bar-title {
+    margin-left: 20px;
+  }
+  .bar-value {
+    color: deepskyblue;
+    float: right;
+    margin-right: 20px;
+  }
+}
+
+.pie-wrapper {
+  width: 100%;
+}
+
+// Section 3
+.line-title {
+  text-align: center;
+}
+
+// Section 2
+ul.list-row {
+  display: flex;
+  padding: 0 100px;
+  list-style-type: none;
+  li {
+    flex: 1;
+    span {
+      display: block;
+      text-align: center;
+      &.detail-value {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+// Section 4
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+td,th {
+  min-width: 100px;
+  text-align: center;
+  padding: 5px 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #eeeeee;
 }
