@@ -32,8 +32,15 @@ nav a {
   }
 }
 
+@mixin flexbox() {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 .app-wrapper {
   font-family: cursive;
+  padding: 30px 60px;
 }
 
 .section {
@@ -43,40 +50,61 @@ nav a {
   }
 }
 
-.section.flex, .ngx-chart {
+.section.flex,
+.ngx-chart {
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
 .pie-wrapper,
-.bar-wrapper,
 .line-wrapper,
 .row {
-  float: left;
+  @include flexbox();
   @include clearfix();
+}
+
+
+.sub-title {
+  font-size: 30px;
 }
 
 // Section 1
 .pie-title {
   text-align: center;
 }
-.sub-title {
-  font-size: 30px;
-  margin-left: 20px;
-  margin-bottom: 30px;
-}
 
 .pie-section {
   flex: 2;
 }
 
-.bar-section {
+.line-section {
   flex: 3;
+}
+
+.pie-wrapper {
+  width: 100%;
+}
+
+.line-title {
+  text-align: center;
+}
+
+// Section 3
+.bar-section {
+  width: 100%;
   padding: 50px 0;
 }
 
+bar {
+  flex: 1;
+}
+
 .bar-wrapper {
+  .text-wrapper {
+    width: 320px;
+    margin: auto;
+  }
   .bar-title {
     margin-left: 20px;
   }
@@ -87,20 +115,11 @@ nav a {
   }
 }
 
-.pie-wrapper {
-  width: 100%;
-}
-
-// Section 3
-.line-title {
-  text-align: center;
-}
-
 // Section 2
 ul.list-row {
   display: flex;
-  padding: 0 100px;
   list-style-type: none;
+  padding: 0;
   li {
     flex: 1;
     span {
@@ -119,7 +138,8 @@ table {
   border-collapse: collapse;
 }
 
-td,th {
+td,
+th {
   min-width: 100px;
   text-align: center;
   padding: 5px 5px;

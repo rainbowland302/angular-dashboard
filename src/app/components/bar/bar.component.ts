@@ -9,7 +9,7 @@ export class BarComponent {
   @Input() barData: any[];
   value: string;
   title: string;
-  view: any[] = [200, 50];
+  view: any[] = [320, 50];
 
   // options
   showXAxis = false;

@@ -1,15 +1,8 @@
 <div class="app-wrapper">
+  <div class="sub-title">Isilon China Hiring Dashboard</div>
   <div class="section flex">
     <pie class="pie-section" [pieData]="overviewGroup"></pie>
-    <div class="bar-section">
-      <div class="sub-title">Isilon China Hiring</div>
-      <div class="row">
-        <bar *ngFor="let item of barData.slice(0,3)" [barData]="item"></bar>
-      </div>
-      <div class="row">
-        <bar *ngFor="let item of barData.slice(3)" [barData]="item"></bar>
-      </div>
-    </div>
+    <line class="line-section" [lineData]="lineData"></line>
   </div>
   <div class="section">
     <ul class="list-row">
@@ -26,9 +19,16 @@
     </ul>
   </div>
   <div class="section flex">
-    <line [lineData]="lineData"></line>
+    <div class="bar-section">
+      <div class="row">
+        <bar *ngFor="let item of barData.slice(0,3)" [barData]="item"></bar>
+      </div>
+      <div class="row">
+        <bar *ngFor="let item of barData.slice(3)" [barData]="item"></bar>
+      </div>
+    </div>
   </div>
-  <div class="section">
+  <!--<div class="section">
     <standard-table [tableHeader]="tableHeader" [tableContent]="tableContent"></standard-table>
-  </div>
+  </div>-->
 </div>
