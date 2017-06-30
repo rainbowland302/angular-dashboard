@@ -1,6 +1,6 @@
 export var overviewGroup = [
-  {"name": "filled", "value": 30},
-  {"name": "opened", "value": 40}
+  { "name": "filled", "value": 30 },
+  { "name": "opened", "value": 40 }
 ];
 
 export var hireGroup = [
@@ -25,15 +25,45 @@ export var detailGroup = [
   { name: 'Avg. Working Yr', value: '5.5' }
 ];
 
-export var trendGroup = [
-  { name: '2015', value: 500 },
-  { name: '2016', value: 300 },
-  { name: '2017', value: 1000 }
-];
 export var forecastGroup = [
-  { name: '2015', value: 600 },
-  { name: '2016', value: 900 },
-  { name: '2017', value: 400 }
+  { name: 'week1', value: 0 },
+  { name: 'week2', value: 0 },
+  { name: 'week3', value: 0 },
+  { name: 'week4', value: 0 },
+  { name: 'week5', value: 1 },
+  { name: 'week6', value: 2 },
+  { name: 'week7', value: 3 },
+  { name: 'week8', value: 4 },
+  { name: 'week9', value: 6 },
+  { name: 'week10', value: 8 },
+  { name: 'week11', value: 9 },
+  { name: 'week12', value: 10 },
+  { name: 'week13', value: 11 },
+  { name: 'week14', value: 12 },
+  { name: 'week15', value: 13 },
+  { name: 'week16', value: 14 },
+  { name: 'week17', value: 16 },
+  { name: 'week18', value: 18 },
+  { name: 'week19', value: 20 },
+  { name: 'week20', value: 21 },
+  { name: 'week21', value: 23 },
+  { name: 'week22', value: 25 },
+  { name: 'week23', value: 27 },
+  { name: 'week24', value: 29 },
+];
+export var trendGroup = [
+  { name: 'week1', value: 0 },
+  { name: 'week2', value: 0 },
+  { name: 'week3', value: 0 },
+  { name: 'week4', value: 0 },
+  { name: 'week5', value: 0 },
+  { name: 'week6', value: 1 },
+  { name: 'week7', value: 2 },
+  { name: 'week8', value: 4 },
+  { name: 'week9', value: 5 },
+  { name: 'week10', value: 7 },
+  { name: 'week11', value: 8 },
+  { name: 'week12', value: 9 },
 ]
 
 export var tableHeader = [
