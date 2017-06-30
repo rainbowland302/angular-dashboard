@@ -8,6 +8,8 @@ import * as d3 from 'd3';
 })
 export class LineComponent {
   @Input() lineData: any[];
+  @Input() chartTitle: string;
+  @Input() chartWidth: string;
   view: any[] = [800, 300];
   // options
   showXAxis = true;
@@ -25,6 +27,7 @@ export class LineComponent {
 
   ngOnInit() {
     console.log(d3);
+    if(this.chartWidth) this.view = [Number(this.chartWidth), 300];
   }
 
 }
