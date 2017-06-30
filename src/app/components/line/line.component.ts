@@ -1,5 +1,6 @@
 import { Component, NgModule, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import * as d3 from 'd3';
 
 @Component({
   selector: 'line',
@@ -13,16 +14,17 @@ export class LineComponent {
   showYAxis = true;
   gradient = false;
   showLegend = true;
+  curve = d3.curveBasis;
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28']
+    domain: ['green', 'deepskyblue']
   };
 
   // line, area
   autoScale = true;
 
   ngOnInit() {
-
+    console.log(d3);
   }
 
 }
