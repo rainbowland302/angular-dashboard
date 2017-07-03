@@ -48,6 +48,7 @@
     "rimraf": "rimraf",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
     "server:node": "babel-node server/server.js",
+    "server:node:debug": "babel-node --inspect --debug-brk server/server.js",
     "server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
     "server:prod:ci": "http-server dist -p 3000 -c-1 --cors",
@@ -87,8 +88,10 @@
     "express": "^4.15.3",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
+    "node-xlsx": "^0.7.4",
     "reflect-metadata": "^0.1.10",
     "rxjs": "~5.0.2",
+    "xlsx": "^0.10.6",
     "zone.js": "0.8.5"
   },
   "devDependencies": {
