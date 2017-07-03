@@ -71,6 +71,22 @@ nav a {
 }
 
 // Section 1
+.pie-label {
+  position: absolute;
+  top: 50%;
+  animation: none !important;
+  padding: 5px;
+  background: white;
+  border-radius: 5px;
+
+  &:nth-last-of-type(1) {
+    right: calc(50% + 40px);
+  }
+  &:nth-last-of-type(2) {
+    left: calc(50% + 50px);
+  }
+}
+
 .pie-title {
   text-align: center;
 }
@@ -84,10 +100,11 @@ nav a {
 }
 
 .pie-wrapper {
-  width: 100%;
+  position: relative;
 }
 
 .line-title {
+  margin-top: 10px;
   text-align: center;
 }
 

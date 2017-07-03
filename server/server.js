@@ -3,7 +3,6 @@ import Express from 'express';
 import bodyParser from 'body-parser';
 
 import apiRoutes from './controller';
-
 // Initialize Express server
 const app = new Express();
 const port = process.env.PORT || 3000;

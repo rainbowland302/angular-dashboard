@@ -1,4 +1,5 @@
 <div class="pie-wrapper">
+  <span class="pie-label" *ngFor="let item of pieData" >{{item.name}} : {{item.value}}</span>
   <ngx-charts-pie-chart
     class="ngx-chart"
     [view]="view"
