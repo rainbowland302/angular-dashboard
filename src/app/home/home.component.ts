@@ -2,23 +2,28 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app.service';
 import { XLargeDirective } from './x-large';
-import { overviewGroup, hireGroup, detailGroup, trendGroup, forecastGroup, tableHeader, tableContent } from '../services/data'
+
+import { overviewGroup, hireGroup, detailGroup, tableHeader, tableContent } from '../services/data'
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'home',  // <home></home>
   styleUrls: ['./home.component.css'],
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  providers: [DashboardService]
 })
 export class HomeComponent implements OnInit {
   overviewGroup: any[];
   barData: any[];
   detailGroup: any[];
-  lineData: any[];
   tableHeader: any[];
   tableContent: any[];
+  reqTrend: any[] = [];
+  resumeTrend: any[] = [];
+  interviewTrend: any[] = [];
 
   public localState = { value: '' };
   /**
@@ -26,6 +31,7 @@ export class HomeComponent implements OnInit {
    */
   constructor(
     public appState: AppState,
+    private dashboardService: DashboardService,
   ) { }
 
   public ngOnInit() {
@@ -43,14 +49,32 @@ export class HomeComponent implements OnInit {
       }];
     });
     this.detailGroup = detailGroup;
-    this.lineData = [{
-      name: 'Trend',
-      series: trendGroup
-    }, {
-      name: 'Forecast',
-      series: forecastGroup
-    }]
     this.tableHeader = tableHeader;
     this.tableContent = tableContent;
+
+    this.dashboardService.getTrend()
+      .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
+        this.reqTrend = [{
+          name: 'Trend',
+          series: reqReal
+        }, {
+          name: 'Forecast',
+          series: reqExpect
+        }];
+        this.resumeTrend = [{
+          name: 'Trend',
+          series: resumeReal
+        }, {
+          name: 'Forecast',
+          series: resumeExpect
+        }];
+        this.interviewTrend = [{
+          name: 'Trend',
+          series: interviewReal
+        }, {
+          name: 'Forecast',
+          series: interviewExpect
+        }];
+      })
   }
 }
