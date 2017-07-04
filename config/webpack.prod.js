@@ -24,13 +24,13 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
-
+const ip = require('ip');
 /**
  * Webpack Constants
  */
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || ip.address();
+const PORT = process.env.PORT || 3005;
 const METADATA = webpackMerge(commonConfig({
   env: ENV
 }).metadata, {
@@ -163,6 +163,8 @@ module.exports = function (env) {
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'HOST': JSON.stringify(METADATA.host),
+        'PORT': JSON.stringify(METADATA.port),
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),

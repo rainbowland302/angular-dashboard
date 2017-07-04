@@ -27,7 +27,6 @@ export class LineComponent {
   autoScale = true;
 
   ngOnInit() {
-    console.log(d3);
     if(this.chartWidth) this.view = [Number(this.chartWidth), 300];
   }
 

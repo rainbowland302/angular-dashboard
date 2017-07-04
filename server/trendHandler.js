@@ -32,10 +32,10 @@ const getReduce = (data) => {
 }
 
 const getCombined = (dates, values) => {
-  return dates.map((name, index) => {
+  return values.map((value, index) => {
     return {
-      name,
-      value: values[index]
+      name: dates[index],
+      value
     }
   });
 }

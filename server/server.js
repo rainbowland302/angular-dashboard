@@ -5,10 +5,11 @@ import bodyParser from 'body-parser';
 import apiRoutes from './controller';
 // Initialize Express server
 const app = new Express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 
 // set static file location
 app.use('/', Express.static(require('path').resolve(__dirname, '../dist')));
+console.log("============== You are in PRODUCTION MODE ==============");
 
 //Config App
 app.use(bodyParser.urlencoded({ extended: false })); // only can deal with key/value

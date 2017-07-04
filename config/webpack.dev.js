@@ -135,6 +135,8 @@ module.exports = function (options) {
       new DefinePlugin({
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'HOST': JSON.stringify(METADATA.host),
+        'PORT': JSON.stringify(METADATA.port),
         'process.env': {
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
@@ -226,6 +228,11 @@ module.exports = function (options) {
         // aggregateTimeout: 300,
         // poll: 1000,
         ignored: /node_modules/
+      },
+      proxy: {
+        "/api": {
+          target: "http://localhost:3005"
+        }
       },
       /**
       * Here you can access the Express app object and add your own custom middleware to it.
