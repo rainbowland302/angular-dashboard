@@ -5,7 +5,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app.service';
 
-import { overviewGroup, hireGroup, detailGroup, tableHeader, tableContent } from '../services/data'
+import { tableHeader, tableContent } from '../services/data'
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
@@ -14,11 +14,11 @@ import { DashboardService } from '../services/dashboard.service';
   providers: [DashboardService]
 })
 export class HomeComponent implements OnInit {
-  overviewGroup: any[];
-  barData: any[];
-  detailGroup: any[];
-  tableHeader: any[];
-  tableContent: any[];
+  overviewGroup: any[] = [];
+  barData: any[] = [];
+  detailGroup: any[] = [];
+  tableHeader: any[] = [];
+  tableContent: any[] = [];
   reqTrend: any[] = [];
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
@@ -33,20 +33,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.overviewGroup = overviewGroup;
-    this.barData = hireGroup.map(({ name, filled, total }) => {
-      return [{
-        name,
-        series: [{
-          name: 'filled',
-          value: filled
-        }, {
-          name: 'opened',
-          value: total - filled
-        }]
-      }];
-    });
-    this.detailGroup = detailGroup;
+    //this.overviewGroup = overviewGroup;
+
+    //this.detailGroup = detailGroup;
     this.tableHeader = tableHeader;
     this.tableContent = tableContent;
 
@@ -73,6 +62,24 @@ export class HomeComponent implements OnInit {
           name: 'Forecast',
           series: interviewExpect
         }];
+      })
+
+    this.dashboardService.getPosition()
+      .then(({ overviewGroup, detailGroup, hireGroup }) => {
+        this.overviewGroup = overviewGroup;
+        this.detailGroup = detailGroup;
+        this.barData = hireGroup.map(({ name, filled, total }) => {
+          return [{
+            name,
+            series: [{
+              name: 'filled',
+              value: filled
+            }, {
+              name: 'opened',
+              value: total - filled
+            }]
+          }];
+        });
       })
   }
 }

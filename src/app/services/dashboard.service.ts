@@ -34,4 +34,16 @@ export class DashboardService {
         return Promise.reject(error.message || error);
       });
   }
+   getPosition(): Promise<any> {
+    console.log(`${API_BASE_URL}/api/position`);
+    return this.http.get(`${API_BASE_URL}/api/position`)
+      .toPromise()
+      .then(res => {
+        return res.json() || {}
+      })
+      .catch(error => {
+        console.log(error);
+        return Promise.reject(error.message || error);
+      });
+  }
 }
