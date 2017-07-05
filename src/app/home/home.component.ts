@@ -4,14 +4,12 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app.service';
-import { XLargeDirective } from './x-large';
 
 import { overviewGroup, hireGroup, detailGroup, tableHeader, tableContent } from '../services/data'
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'home',  // <home></home>
-  styleUrls: ['./home.component.css'],
   templateUrl: './home.component.html',
   providers: [DashboardService]
 })
