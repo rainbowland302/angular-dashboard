@@ -115,7 +115,8 @@ nav a {
 }
 
 bar {
-  flex: 1;
+  display: inline-block;
+  width: 33.3%;
 }
 
 .bar-wrapper {

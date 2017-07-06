@@ -23,20 +23,15 @@ export class DashboardService {
   // }
 
   getTrend(): Promise<any> {
-    console.log(`${API_BASE_URL}/api/trend`);
-    return this.http.get(`${API_BASE_URL}/api/trend`)
-      .toPromise()
-      .then(res => {
-        return res.json() || {}
-      })
-      .catch(error => {
-        console.log(error);
-        return Promise.reject(error.message || error);
-      });
+    return this._getJSON(`${API_BASE_URL}/api/trend`);
   }
-   getPosition(): Promise<any> {
-    console.log(`${API_BASE_URL}/api/position`);
-    return this.http.get(`${API_BASE_URL}/api/position`)
+
+  getPosition(): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/position`);
+  }
+
+  _getJSON(url: string): Promise<any> {
+    return this.http.get(url)
       .toPromise()
       .then(res => {
         return res.json() || {}
