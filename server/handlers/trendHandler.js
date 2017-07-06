@@ -1,7 +1,9 @@
 import xlsx from 'node-xlsx';
 
+const filePath = require('path').resolve(__dirname, '../assets/hiringtrend.xlsx');
+
 export const getTrend = () => {
-  const rawData = xlsx.parse(`${__dirname}/assets/hiringtrend.xlsx`)[0].data;
+  const rawData = xlsx.parse(filePath)[0].data;
   const reqExpect = getCombined(getDate(rawData[0]), getReduce(rawData[1]));
   const reqReal = getCombined(getDate(rawData[0]), getReduce(rawData[2]));
   const resumeExpect = getCombined(getDate(rawData[3]), getReduce(rawData[4]));

@@ -18,13 +18,10 @@
       </li>
     </ul>
   </div>
-  <div class="section flex">
+  <div class="section">
     <div class="bar-section">
-      <div class="row">
-        <bar *ngFor="let item of barData.slice(0,3)" [barData]="item"></bar>
-      </div>
-      <div class="row">
-        <bar *ngFor="let item of barData.slice(3)" [barData]="item"></bar>
+      <div *ngFor="let group of barData">
+        <bar *ngFor="let item of group" [barData]="item"></bar>
       </div>
     </div>
   </div>

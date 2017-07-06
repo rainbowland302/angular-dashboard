@@ -5,7 +5,6 @@ import {
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../app.service';
 
-import { overviewGroup, hireGroup, detailGroup, tableHeader, tableContent } from '../services/data'
 import { DashboardService } from '../services/dashboard.service';
 
 @Component({
@@ -14,11 +13,9 @@ import { DashboardService } from '../services/dashboard.service';
   providers: [DashboardService]
 })
 export class HomeComponent implements OnInit {
-  overviewGroup: any[];
-  barData: any[];
-  detailGroup: any[];
-  tableHeader: any[];
-  tableContent: any[];
+  overviewGroup: any[] = [];
+  barData: any[] = [];
+  detailGroup: any[] = [];
   reqTrend: any[] = [];
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
@@ -33,23 +30,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.overviewGroup = overviewGroup;
-    this.barData = hireGroup.map(({ name, filled, total }) => {
-      return [{
-        name,
-        series: [{
-          name: 'filled',
-          value: filled
-        }, {
-          name: 'opened',
-          value: total - filled
-        }]
-      }];
-    });
-    this.detailGroup = detailGroup;
-    this.tableHeader = tableHeader;
-    this.tableContent = tableContent;
-
     this.dashboardService.getTrend()
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
         this.reqTrend = [{
@@ -73,6 +53,33 @@ export class HomeComponent implements OnInit {
           name: 'Forecast',
           series: interviewExpect
         }];
-      })
+      });
+
+    this.dashboardService.getPosition()
+      .then(({ overviewGroup, detailGroup, hireGroup }) => {
+        this.overviewGroup = overviewGroup;
+        this.detailGroup = detailGroup;
+        // Show 3 bar chart one row
+        this.barData = hireGroup
+          .map(({ name, filled, total }) => {
+            return [{
+              name,
+              series: [{
+                name: 'filled',
+                value: filled
+              }, {
+                name: 'opened',
+                value: total - filled
+              }]
+            }];
+          })
+          .reduce((a, b, i) => {
+            if (i % 3 === 0) return [...a, [b]]
+            else {
+              a[a.length - 1].push(b)
+              return a;
+            }
+          }, []);
+      });
   }
 }
