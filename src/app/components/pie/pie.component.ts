@@ -8,13 +8,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class PieComponent {
   @Input() pieData: any[];
 
-  view: any[] = [300, 300];
+  view: any[] = [600, 300];
 
   // options
-  showLegend = false;
+  showLegend = true;
 
+  // onboard, offered, open
   colorScheme = {
-    domain: ['deepskyblue', 'lightgray']
+    domain: ['green', 'deepskyblue', 'lightgray']
   };
   // pie
   showLabels = false;

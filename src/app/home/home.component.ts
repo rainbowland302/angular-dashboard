@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.dashboardService.getPosition()
       .then(({ overviewGroup, detailGroup, hireGroup }) => {
         this.overviewGroup = overviewGroup;
-        this.detailGroup = detailGroup;
+        this.detailGroup = [...overviewGroup, ...detailGroup];
         // Show 3 bar chart one row
         this.barData = hireGroup
           .map(({ name, filled, total }) => {
