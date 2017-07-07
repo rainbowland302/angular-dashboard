@@ -8,12 +8,16 @@ const GROUP = 'Group';
 const HIRING_STATUS = 'Hiring Status';
 const PHONE_INTERVIEW = 'Phone Interview Comments';
 const ONSITE_INTERVIEW = 'TP/Onsite Interview Comments';
-const DEGREE = 'Degree';
-const YEAR_OF_EXP = 'Years of Experience';
 
 // Status
-const OPEN = 'open';
-const FILLED = 'filled';
+const ONBOARD = 'Onboard';
+const OFFERED = 'Offered';
+const OPEN = 'Open';
+const FILLED = 'Filled';
+const isOnboard = str => typeof str === 'string' && str.toLowerCase().indexOf('board') >= 0;
+const isOffered = str => typeof str === 'string' && str.toLowerCase().indexOf('offer') >= 0;
+const isOpen = str => typeof str === 'string' && str.toLowerCase().indexOf('open') >= 0;
+const isFilled = str => isOffered(str) || isOnboard(str);
 
 export const getPosition = () => {
   const positions = xlsx.parse(filePath1)[0].data;
@@ -37,21 +41,22 @@ const getHireGroup = (data) => {
     let existIndex = a.findIndex(str => str && str.name === b);
     if (existIndex >= 0) {
       a[existIndex].total++;
-      a[existIndex].filled += statusValues[i] === 'filled' ? 1 : 0;
+      a[existIndex].filled += isFilled(statusValues[i]) ? 1 : 0;
       return a;
     }
-    return [...a, { name: b, filled: statusValues[i] === 'filled' ? 1 : 0, total: 1 }];
+    return [...a, { name: b, filled: isFilled(statusValues[i]) ? 1 : 0, total: 1 }];
   }, []);
 }
 
-// return [ {name: 'open', value: number}, {name: 'filled', value: number} ]
+// return [ {name: 'Onboard', value: number}, {name: 'Offered', value: number}, {name: 'Open', value: number} ]
 const getHireOverview = (data) => {
   let statusValues = getTargetColumn(data, HIRING_STATUS);
   return statusValues.reduce((a, b) => {
-    if (b === OPEN) a[0].value++;
-    if (b === FILLED) a[1].value++;
+    if (isOnboard(b)) a[0].value++;
+    if (isOffered(b)) a[1].value++;
+    if (isOpen(b)) a[2].value++;
     return a;
-  }, [{ name: OPEN, value: 0 }, { name: FILLED, value: 0 }]);
+  }, [{ name: ONBOARD, value: 0 }, { name: OFFERED, value: 0 }, { name: OPEN, value: 0 }]);
 }
 
 
@@ -59,35 +64,16 @@ const getHireOverview = (data) => {
 // [ {name: string, value: string } ]
 const getPositionDeatil = (candidates, positions) => {
   let candidatesNumber = candidates.length,
-    positionNumber = positions.length,
     phoneInterviewNumber = getTargetColumn(candidates, PHONE_INTERVIEW).length,
-    onsiteInterviewNumber = getTargetColumn(candidates, ONSITE_INTERVIEW).length,
-    offerQuality = `${positionNumber}/${candidatesNumber}`,
-    masterDegreeNumber = getTargetColumn(candidates, DEGREE).reduce((count, degree) => {
-      if (degree === 'master') {
-        count += 1;
-      }
-      return count;
-    }, 0),
-    masterDegreePercent = Math.round((masterDegreeNumber / candidatesNumber) * 100) + '%',
-    workingYearSum = getTargetColumn(candidates, YEAR_OF_EXP).reduce((count, workingYear) => {
-      return count + parseInt(workingYear); // as we convert value to string in common place
-    }, 0),
-    averageWorkingYear = (workingYearSum / candidatesNumber).toPrecision(2);
+    onsiteInterviewNumber = getTargetColumn(candidates, ONSITE_INTERVIEW).length;
 
-    // hard code some TODO values
-    return [
-      { name: 'TTF', value: '25' },
-      { name: 'Resume Screened', value: candidatesNumber },
-      { name: 'Phone Screened', value: phoneInterviewNumber },
-      { name: 'Onsite Interviews', value: onsiteInterviewNumber },
-      { name: 'Matrix Interviews', value: '120' }, // this value id not defined yet, keep it same as onsite interview
-      { name: 'Offer Quality', value: offerQuality },
-      { name: 'Master + Degree', value: masterDegreePercent },
-      { name: 'From China Top 20 Unv.', value: '65%' },
-      { name: 'From MNC', value: '70%' },
-      { name: 'Avg. Working Yr', value: averageWorkingYear }
-    ];
+  // hard code some TODO values
+  return [
+    { name: 'TTF', value: '25' },
+    { name: 'Resume Screened', value: candidatesNumber },
+    { name: 'Phone Screened', value: phoneInterviewNumber },
+    { name: 'Onsite Interviews', value: onsiteInterviewNumber },
+  ];
 }
 
 const getTargetColumn = (data, columnName) => {

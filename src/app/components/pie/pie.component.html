@@ -1,16 +1,16 @@
 <div class="pie-wrapper">
-  <span class="pie-label" *ngFor="let item of pieData" >{{item.name}} : {{item.value}}</span>
+  <!--<span class="pie-label" *ngFor="let item of pieData" >{{item.name}} : {{item.value}}</span>-->
   <ngx-charts-pie-chart
     class="ngx-chart"
     [view]="view"
     [scheme]="colorScheme"
     [results]="pieData"
     [legend]="showLegend"
+    [legendTitle]="''"
     [explodeSlices]="explodeSlices"
     [labels]="showLabels"
     [doughnut]="doughnut"
-    [gradient]="gradient"
-    (select)="onSelect($event)">
+    [gradient]="gradient">
   </ngx-charts-pie-chart>
 </div>
 <div class="pie-title">Hiring Overview</div>
