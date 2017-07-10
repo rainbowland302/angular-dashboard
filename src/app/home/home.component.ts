@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   barData: any[] = [];
   detailGroup: any[] = [];
   reqTrend: any[] = [];
+
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
   selectedOption: string;
@@ -97,6 +98,6 @@ export class HomeComponent implements OnInit {
               return a;
             }
           }, []);
-      });
+      });      
   }
 }

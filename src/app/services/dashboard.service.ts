@@ -29,6 +29,9 @@ export class DashboardService {
   getPosition(): Promise<any> {
     return this._getJSON(`${API_BASE_URL}/api/position`);
   }
+  getGroupHireDetail(): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/group_detail`);
+  }
 
   _getJSON(url: string): Promise<any> {
     return this.http.get(url)
