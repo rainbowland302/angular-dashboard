@@ -1,4 +1,4 @@
-import { Component, NgModule, Input } from '@angular/core';
+import { Component, NgModule, Input, Output, EventEmitter} from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -7,10 +7,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 })
 export class BarComponent {
   @Input() barData: any[];
+  @Output() openDialog = new EventEmitter();
   value: string;
   title: string;
   view: any[] = [320, 50];
 
+  handleDialog(): void {
+    this.openDialog.emit(this.title);
+  }
   // options
   showXAxis = false;
   showYAxis = false;
