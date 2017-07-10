@@ -4,6 +4,7 @@
 /* This file is for setting global styles  */
 
 @import 'variables';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 // @import './component';
 nav {
   margin-top: 16px;
@@ -44,10 +45,9 @@ nav a {
 }
 
 .section {
-  padding: 20px 30px;
-  &:not(:last-child) {
-    border-bottom: 2px dotted deepskyblue
-  }
+  padding: 20px 30px; // &:not(:last-child) {
+  //   border-bottom: 2px dotted deepskyblue
+  // }
 }
 
 .section.flex,
@@ -64,10 +64,18 @@ nav a {
   @include clearfix();
 }
 
-
-.sub-title {
+.page-title {
   font-weight: bold;
   font-size: 30px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin-top: 16px;
+  width: 300px;
+  display: inline-block;
+  border-bottom: 3px solid deepskyblue;
+  padding-bottom: 5px;
 }
 
 // Section 1
@@ -78,7 +86,6 @@ nav a {
   padding: 5px;
   background: white;
   border-radius: 5px;
-
   &:nth-last-of-type(1) {
     right: calc(50% + 40px);
   }
@@ -111,7 +118,7 @@ nav a {
 // Section 3
 .bar-section {
   width: 100%;
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 bar {
@@ -126,9 +133,10 @@ bar {
   }
   .bar-title {
     margin-left: 20px;
+    color: deepskyblue;
+    cursor: pointer;
   }
   .bar-value {
-    color: deepskyblue;
     float: right;
     margin-right: 20px;
   }
@@ -152,19 +160,24 @@ ul.list-row {
   }
 }
 
-// Section 4
+// Dialog
 table {
   margin: auto;
+  width: 100%;
   border-collapse: collapse;
+  min-width: 500px;
 }
 
 td,
 th {
   min-width: 100px;
   text-align: center;
-  padding: 5px 5px;
+  padding: 15px 5px;
 }
 
-tr:nth-child(even) {
-  background-color: #eeeeee;
+// tr:nth-child(even) {
+//   background-color: #eeeeee;
+// }
+tbody tr:not(:last-child) {
+  border-bottom: 1px solid lightgray;
 }

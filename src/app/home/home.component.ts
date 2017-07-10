@@ -3,9 +3,11 @@ import {
   OnInit
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AppState } from '../app.service';
+import { MdDialog } from '@angular/material';
 
+import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
+import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
 
 @Component({
   selector: 'home',  // <home></home>
@@ -19,14 +21,29 @@ export class HomeComponent implements OnInit {
   reqTrend: any[] = [];
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
+  selectedOption: string;
 
   public localState = { value: '' };
+
+  onOpenDialog(title: string) {
+    let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
+      data: {
+        title,
+        tableHeader: [{ key: 'status', value: 'Hiring Status' }, { key: 'value', value: 'Count' }],
+        tableContent: [{ status: 'Onboard', value: 3 }, { status: 'Offered', value: 2 }, { status: 'Open', value: 1 }]
+      }
+    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.selectedOption = result;
+    // });
+  }
   /**
    * TypeScript public modifiers
    */
   constructor(
     public appState: AppState,
     private dashboardService: DashboardService,
+    public dialog: MdDialog
   ) { }
 
   public ngOnInit() {
@@ -58,7 +75,7 @@ export class HomeComponent implements OnInit {
     this.dashboardService.getPosition()
       .then(({ overviewGroup, detailGroup, hireGroup }) => {
         this.overviewGroup = overviewGroup;
-        this.detailGroup = [...overviewGroup, ...detailGroup];
+        this.detailGroup = [...detailGroup.slice(0, 1), overviewGroup[0], overviewGroup[1], ...detailGroup.slice(1)];
         // Show 3 bar chart one row
         this.barData = hireGroup
           .map(({ name, filled, total }) => {
