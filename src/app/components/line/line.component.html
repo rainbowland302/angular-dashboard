@@ -1,3 +1,9 @@
+
+<div class="legend" >
+   <span *ngFor="let item of lineData">
+      {{item.name}}
+   </span> 
+</div>
 <div class="line-wrapper">
   <ngx-charts-line-chart
     [view]="view"

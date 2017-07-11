@@ -11,7 +11,7 @@ export class PieComponent {
   view: any[] = [600, 300];
 
   // options
-  showLegend = true;
+  showLegend = false;
 
   // onboard, offered, open
   colorScheme = {
