@@ -3,31 +3,25 @@
 
   <div class="section-title">Hiring Overview</div>
   <div class="section flex">
-    <pie class="pie-section" [pieData]="overviewGroup"></pie>
+    <pie class="pie-section" [pieData]="overviewStatus"></pie>
     <line class="line-section" [lineData]="reqTrend" [chartTitle]="'Filling Req Trend & Forecasting'"></line>
   </div>
 
   <div class="section-title">Hiring Highlight</div>
   <div class="section">
     <ul class="list-row">
-      <li *ngFor="let item of detailGroup">
+      <li *ngFor="let item of overviewHighlight">
         <span class="detail-value">{{item.value}}</span>
         <span class="detail-name">{{item.name}}</span>
       </li>
     </ul>
-    <!--<ul class="list-row">
-      <li *ngFor="let item of detailGroup.slice(5)">
-        <span class="detail-value">{{item.value}}</span>
-        <span class="detail-name">{{item.name}}</span>
-      </li>
-    </ul>-->
   </div>
 
   <div class="section-title">Hiring Status by Team</div>
   <div class="section">
     <div class="bar-section">
-      <div *ngFor="let group of barData">
-        <bar *ngFor="let item of group" [barData]="item" (openDialog)="onOpenDialog($event)"></bar>
+      <div *ngFor="let group of barData; let i = index">
+        <bar *ngFor="let item of group; let j = index" [barData]="item" (openDialog)="onOpenDialog(i*barStep + j)"></bar>
       </div>
     </div>
   </div>

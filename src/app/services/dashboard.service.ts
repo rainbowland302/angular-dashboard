@@ -30,6 +30,14 @@ export class DashboardService {
     return this._getJSON(`${API_BASE_URL}/api/position`);
   }
 
+  getOverview(): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/overview`);
+  }
+
+  getTeam(): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/team`);
+  }
+
   _getJSON(url: string): Promise<any> {
     return this.http.get(url)
       .toPromise()
