@@ -300,6 +300,7 @@ h1.mat-dialog-title {
 // .onsite-trend .highlight-wrapper {
 //   @include highlight(4%, 70%, 'Q4 FY18 \A Forecast: 280');
 // }
-.line-series[ng-reflect-stroke="green"]>path {
+.line-series[ng-reflect-stroke="green"]>path,
+.line-series>path[stroke="green"] {
   stroke-width: 5px !important;
 }
