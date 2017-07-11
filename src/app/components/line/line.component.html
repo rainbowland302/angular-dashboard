@@ -1,25 +1,26 @@
-
-<div class="legend" >
+<!--<div class="legend" >
    <span *ngFor="let item of lineData">
       {{item.name}}
-   </span> 
-</div>
+   </span>
+</div>-->
 <div class="line-wrapper">
-  <ngx-charts-line-chart
-    [view]="view"
-    [scheme]="colorScheme"
-    [results]="lineData"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="showLegend"
-    [legendTitle]="legendTitle"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [autoScale]="autoScale"
-    [curve]="curve">
-  </ngx-charts-line-chart>
+  <div class="highlight-wrapper">
+    <ngx-charts-line-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="lineData"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [legendTitle]="legendTitle"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [autoScale]="autoScale"
+      [curve]="curve">
+    </ngx-charts-line-chart>
+  </div>
 </div>
 <div class="line-title">{{chartTitle}}</div>
