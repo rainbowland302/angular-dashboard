@@ -4,6 +4,8 @@ import { getPosition } from './handlers/positionHandler';
 import { overviewGroup, hireGroup, detailGroup, trendGroup, forecastGroup, tableHeader, tableContent } from './assets/mock';
 import { candidatesHandler } from './handlers/candidatesHandler';
 import { reqHandler } from './handlers/reqHandler';
+import { getOverview, getTeam } from './handlers/handler';
+
 
 const apiRoutes = Express.Router();
 
@@ -34,6 +36,15 @@ apiRoutes.get('/candidates',(req, res) => {
 
 apiRoutes.get('/req',(req, res) => {
   let requirements = reqHandler();
+  res.json(requirements);
+})
+apiRoutes.get('/overview',(req, res) => {
+  let requirements = getOverview();
+  res.json(requirements);
+})
+
+apiRoutes.get('/team',(req, res) => {
+  let requirements = getTeam();
   res.json(requirements);
 })
 
