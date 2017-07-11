@@ -10,6 +10,11 @@ const resumeExpValue = [5, 15, 30, 50, 70, 95, 120, 140, 160, 180, 195, 215, 235
 const onsiteExpValue = [0, 2, 7, 14, 24, 34, 46, 58, 68, 78, 88, 95, 105, 115, 125, 132, 142, 152, 162, 169, 179, 189, 199, 206, 216, 226, 236, 243, 253, 263, 273, 280];
 const reqExpValue = [0, 0, 0, 0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20, 21, 22, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43]
 
+// tmp hard code
+const reqReal = [0, 0, 0];
+const interviewReal = [0, 0, 0];
+
+
 const RESUME = 'CV Upload Date';
 const ONSITE = 'TP/Onsite Interview Time';
 
@@ -25,8 +30,10 @@ export const getTrend = () => {
     interviewExpect: getCombined(expName, onsiteExpValue),
     reqExpect: getCombined(expName, reqExpValue),
     resumeReal: reduceByDate(getLastSunday(resume)),
-    interviewReal: reduceByDate(getLastSunday(onsite)),
-    reqReal: []
+    reqReal: getCombined(expName, reqReal),
+    interviewReal: getCombined(expName, interviewReal)
+    //interviewReal: reduceByDate(getLastSunday(onsite)),
+    //reqReal: []
   }
 }
 
