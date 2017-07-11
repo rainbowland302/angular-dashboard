@@ -36,7 +36,8 @@ export const reduceByGroup = (group, data) => {
     let existIndex = a.findIndex(str => str && str.name === b);
     if (existIndex >= 0) {
       keyArray.forEach(key => {
-        if (data[key][i]) a[existIndex][key]++
+        let date = data[key][i];
+        if (date && isPastDate(date)) a[existIndex][key]++
       });
       return a;
     }
@@ -45,8 +46,19 @@ export const reduceByGroup = (group, data) => {
       name: b
     };
     keyArray.forEach(key => {
-      newGroup[key] = data[key][i] ? 1 : 0;
+      let date = data[key][i];
+      newGroup[key] = (date && isPastDate(date)) ? 1 : 0;
     })
     return [...a, newGroup];
   }, []);
+}
+
+function isPastDate(date) {
+    let t;
+    if (typeof date === 'string') {
+      let tmp = new Date(date);
+      t = tmp.getTime();
+    }
+    else t = (date - (25567 + 2)) * 86400 * 1000 // windows + 2
+    return Date.now() - t > 0 ? true : false;
 }
