@@ -26,11 +26,30 @@ export class HomeComponent implements OnInit {
   public localState = { value: '' };
 
   onOpenDialog(title: string) {
+    const raw =  {
+      name: 'IME DEV',
+      filled: 5,
+      total: 10,
+      onboard: 2,
+      offered: 3,
+      open: 5,
+      resume: 1,
+      phone: 1,
+      onsite: 1
+    }
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
-        title,
-        tableHeader: [{ key: 'status', value: 'Hiring Status' }, { key: 'value', value: 'Count' }],
-        tableContent: [{ status: 'Onboard', value: 3 }, { status: 'Offered', value: 2 }, { status: 'Open', value: 1 }]
+        title: raw.name,
+        value: `${raw.filled}/${raw.total}`,
+        tableHeader: [
+          { key: 'onboard', value: 'Onboard' },
+          { key: 'offered', value: 'Offered' },
+          { key: 'open', value: 'Open' },
+          { key: 'resume', value: 'Resume Screened' },
+          { key: 'phone', value: 'Phone Screened' },
+          { key: 'onsite', value: 'Onsite Interviews' },
+        ],
+        tableContent: [raw]
       }
     });
     // dialogRef.afterClosed().subscribe(result => {
