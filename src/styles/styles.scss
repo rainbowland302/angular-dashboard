@@ -178,6 +178,13 @@ th {
 // tr:nth-child(even) {
 //   background-color: #eeeeee;
 // }
-tbody tr:not(:last-child) {
+thead tr, tbody tr:not(:last-child) {
   border-bottom: 1px solid lightgray;
+}
+
+h1.mat-dialog-title {
+  display: inline-block;
+  &:last-of-type {
+    float: right;
+  }
 }
