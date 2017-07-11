@@ -29,7 +29,6 @@ const getHireGroup = (data) => {
   return groupNames.reduce((a, b, i) => {
     let existIndex = a.findIndex(str => str && str.name === b);
     if (existIndex >= 0) {
-      //a[existIndex].total++;
       a[existIndex].onboard += isOnboard(statusValues[i]) ? 1 : 0;
       a[existIndex].offered += isOffered(statusValues[i]) ? 1 : 0;
       a[existIndex].open += isOpen(statusValues[i]) ? 1 : 0;
