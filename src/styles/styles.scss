@@ -110,11 +110,10 @@ nav a {
   position: relative;
 }
 
-.line-title {
+.line-title,.legend {
   margin-top: 10px;
   text-align: center;
 }
-
 // Section 3
 .bar-section {
   width: 100%;
@@ -186,5 +185,45 @@ h1.mat-dialog-title {
   display: inline-block;
   &:last-of-type {
     float: right;
+  }
+}
+
+$color-collection: ('green', 'deepskyblue','lightgray');
+@mixin legend-color($i){
+  //color:$color-collection[$index];
+  background-color: unquote(nth($color-collection, $i)); 
+}
+div.legend span{
+  font-size: 15px; 
+  //font-weight: 500; 
+  padding: 3px 8px; 
+  text-transform: capitalize;
+}
+div.legend span::before{
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+div.legend{
+  span:nth-of-type(1){
+    &:before{
+      @include legend-color(1)
+    } 
+  }
+}
+div.legend{
+  span:nth-of-type(2){
+    &:before{
+      @include legend-color(2)
+    } 
+  }
+}
+div.legend{
+  span:nth-of-type(3){
+    &:before{
+      @include legend-color(3)
+    } 
   }
 }
