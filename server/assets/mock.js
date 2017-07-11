@@ -105,3 +105,34 @@ export var tableContent = [
     offerStatus: 'Tom A (7/30)'
   }
 ];
+
+
+const mock_overview = {
+  status: {
+    onboard: 30,
+    offered: 40,
+    open: 40
+  },
+  highlight: {
+    ttf: 'N/A',
+    onboard: 40,
+    offered: 40,
+    resume: 40,
+    phone: 40,
+    onsite: 40,
+  }
+}
+
+const mock_groupDetail = [
+  {
+    name: 'IME DEV',
+    filled: 5,
+    total: 10,
+    onboard: 2,
+    offered: 3,
+    open: 5,
+    resume: 1,
+    phone: 1,
+    onsite: 1
+  }
+]
