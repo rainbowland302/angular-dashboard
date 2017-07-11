@@ -8,6 +8,12 @@ import { MdDialog } from '@angular/material';
 import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
+import {
+  OVERVIEW_STATUS,
+  OVERVIEW_HIGHLIGHT,
+  OVERVIEW_STATUS_KEYS,
+  OVERVIEW_HIGHLIGHT_KEYS
+} from '../services/dataModel';
 
 @Component({
   selector: 'home',  // <home></home>
@@ -15,28 +21,20 @@ import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dial
   providers: [DashboardService]
 })
 export class HomeComponent implements OnInit {
-  overviewGroup: any[] = [];
+  overviewStatus: any[] = OVERVIEW_STATUS;
+  overviewHighlight: any[] = OVERVIEW_HIGHLIGHT;
+  teamDetail: any[] = [];
   barData: any[] = [];
-  detailGroup: any[] = [];
   reqTrend: any[] = [];
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
-  selectedOption: string;
+  barStep: number = 3;
+  //selectedOption: string;
 
   public localState = { value: '' };
 
-  onOpenDialog(title: string) {
-    const raw =  {
-      name: 'IME DEV',
-      filled: 5,
-      total: 10,
-      onboard: 2,
-      offered: 3,
-      open: 5,
-      resume: 1,
-      phone: 1,
-      onsite: 1
-    }
+  onOpenDialog(index) {
+    let raw = this.teamDetail[index];
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
         title: raw.name,
@@ -66,6 +64,41 @@ export class HomeComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
+    this.dashboardService.getOverview().then(({ status, highlight }) => {
+      this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
+        a.value = status[OVERVIEW_STATUS_KEYS[i]];
+        return a;
+      });
+      this.overviewHighlight = OVERVIEW_HIGHLIGHT.map((a, i) => {
+        a.value = highlight[OVERVIEW_HIGHLIGHT_KEYS[i]];
+        return a;
+      });
+    });
+
+    this.dashboardService.getTeam().then(teamArray => {
+      this.barData = teamArray
+        .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
+          return [{
+            name,
+            series: [{
+              name: 'Filled',
+              value: filled
+            }, {
+              name: 'Open',
+              value: open
+            }]
+          }]
+        })
+        .reduce((a, b, i) => {
+          if (i % 3 === 0) return [...a, [b]]
+          else {
+            a[a.length - 1].push(b)
+            return a;
+          }
+        }, []);
+      this.teamDetail = teamArray;
+    });
+
     this.dashboardService.getTrend()
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
         this.reqTrend = [{
@@ -89,33 +122,6 @@ export class HomeComponent implements OnInit {
           name: 'Forecast',
           series: interviewExpect
         }];
-      });
-
-    this.dashboardService.getPosition()
-      .then(({ overviewGroup, detailGroup, hireGroup }) => {
-        this.overviewGroup = overviewGroup;
-        this.detailGroup = [...detailGroup.slice(0, 1), overviewGroup[0], overviewGroup[1], ...detailGroup.slice(1)];
-        // Show 3 bar chart one row
-        this.barData = hireGroup
-          .map(({ name, filled, total }) => {
-            return [{
-              name,
-              series: [{
-                name: 'filled',
-                value: filled
-              }, {
-                name: 'opened',
-                value: total - filled
-              }]
-            }];
-          })
-          .reduce((a, b, i) => {
-            if (i % 3 === 0) return [...a, [b]]
-            else {
-              a[a.length - 1].push(b)
-              return a;
-            }
-          }, []);
       });
   }
 }
