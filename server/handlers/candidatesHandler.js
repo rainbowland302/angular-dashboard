@@ -1,23 +1,13 @@
 import xlsx from 'node-xlsx';
 
-import {
-  getTargetColumn,
-  reduceByGroup,
-  isPastDate,
-  flatGroup
-} from './utils';
+import { getTargetColumn, reduceByGroup, isPastDate, flatGroup } from './utils/tools';
+import { isCV, isResume, isPhone, isOnsite, isReject } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
 const PHONE = 'Phone Interview Time';
 const ONSITE = 'TP/Onsite Interview Time';
 const REJECT = 'Interview Status';
-
-const isCV = date => date;
-const isResume = (cvDate, status) => cvDate && !!status;
-const isPhone = date => date && isPastDate(date);
-const isOnsite = date => date && isPastDate(date);
-const isReject = status => status && status.toLowerCase().indexOf('reject') >= 0;
 
 const filePath = require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx');
 
