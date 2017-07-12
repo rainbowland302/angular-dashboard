@@ -10,7 +10,8 @@ import { DashboardService } from '../services/dashboard.service';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
 import {
   OVERVIEW_STATUS,
-  OVERVIEW_HIGHLIGHT,
+  TEAM_HEADER,
+  HIGHLIGHT_HEADER,
   OVERVIEW_STATUS_KEYS,
   OVERVIEW_HIGHLIGHT_KEYS
 } from '../services/dataModel';
@@ -22,7 +23,8 @@ import {
 })
 export class HomeComponent implements OnInit {
   overviewStatus: any[] = OVERVIEW_STATUS;
-  overviewHighlight: any[] = OVERVIEW_HIGHLIGHT;
+  highlightHeader: any[] = HIGHLIGHT_HEADER;
+  highlightContent: any[] = [];
   teamDetail: any[] = [];
   barData: any[] = [];
   reqTrend: any[] = [];
@@ -39,14 +41,7 @@ export class HomeComponent implements OnInit {
       data: {
         title: raw.name,
         value: `${raw.filled}/${raw.total}`,
-        tableHeader: [
-          { key: 'onboard', value: 'Onboard' },
-          { key: 'offered', value: 'Offered' },
-          { key: 'open', value: 'Open' },
-          { key: 'resume', value: 'Resume Screened' },
-          { key: 'phone', value: 'Phone Screened' },
-          { key: 'onsite', value: 'Onsite Interviews' },
-        ],
+        tableHeader: TEAM_HEADER,
         tableContent: [raw]
       }
     });
@@ -69,10 +64,11 @@ export class HomeComponent implements OnInit {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
       });
-      this.overviewHighlight = OVERVIEW_HIGHLIGHT.map((a, i) => {
-        a.value = highlight[OVERVIEW_HIGHLIGHT_KEYS[i]];
-        return a;
-      });
+      this.highlightContent = [highlight];
+      // this.overviewHighlight = OVERVIEW_HIGHLIGHT.map((a, i) => {
+      //   a.value = highlight[OVERVIEW_HIGHLIGHT_KEYS[i]];
+      //   return a;
+      // });
     });
 
     this.dashboardService.getTeam().then(teamArray => {
