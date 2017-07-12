@@ -15,7 +15,7 @@ export class LineComponent {
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
+  showLegend = false;
   legendTitle = '';
   curve = d3.curveBasis;
 
