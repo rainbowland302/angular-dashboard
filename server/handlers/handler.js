@@ -1,11 +1,15 @@
-import {
-  candidatesHandler
-} from './candidatesHandler';
-import {
-  reqHandler
-} from './reqHandler';
+import { candidatesHandler } from './candidatesHandler';
+import { reqHandler} from './reqHandler';
+import { getTrend } from './trendHandler';
 
-export const getOverview = () => {
+
+export default {
+  getOverview,
+  getTeam,
+  getTrend
+};
+
+function getOverview () {
   let groupOverall = mergeGroup(reqHandler(), candidatesHandler());
   let overview = groupOverall.reduce((overview, group, index) => {
     Object.keys(group).forEach(key => {
@@ -28,22 +32,23 @@ export const getOverview = () => {
     },
     highlight: {
       ttf: 'N/A',
-      onboard: overview.onboard,
-      offered: overview.offered,
+      open: overview.open,
       resume: overview.resume,
       phone: overview.phone,
       onsite: overview.onsite,
+      reject: overview.reject,
+      offered: overview.offered,
+      onboard: overview.onboard,
     }
   }
 
 }
 
-export const getTeam = () => {
+function getTeam() {
   return mergeGroup(reqHandler(), candidatesHandler());
-
 }
 
-export const mergeGroup = (req, candidates) => {
+function mergeGroup(req, candidates) {
 
   let defaultCandeGroup = {
     resume: 0,
