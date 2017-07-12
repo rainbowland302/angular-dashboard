@@ -12,8 +12,7 @@ import {
   OVERVIEW_STATUS,
   TEAM_HEADER,
   HIGHLIGHT_HEADER,
-  OVERVIEW_STATUS_KEYS,
-  OVERVIEW_HIGHLIGHT_KEYS
+  OVERVIEW_STATUS_KEYS
 } from '../services/dataModel';
 
 @Component({

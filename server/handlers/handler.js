@@ -32,7 +32,8 @@ function getOverview () {
     },
     highlight: {
       ttf: 'N/A',
-      open: overview.open,
+      total: overview.total,
+      cv: overview.cv,
       resume: overview.resume,
       phone: overview.phone,
       onsite: overview.onsite,

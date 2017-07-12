@@ -1,7 +1,8 @@
-export const OVERVIEW_STATUS = [{ name: 'Onboard', value: 0 }, { name: 'Offered', value: 0 }, { name: 'Open', value: 0 }];
+export const OVERVIEW_STATUS = [{ name: 'Onboard', value: 0 }, { name: 'Offered', value: 0 }, { name: 'Opened Reqs', value: 0 }];
 export const TEAM_HEADER = [
-  { key: 'open', value: 'Opened Reqs' },
-  { key: 'resume', value: 'Resume Uploaded' },
+  { key: 'total', value: 'Total Reqs' },
+  { key: 'cv', value: 'Resume Uploaded' },
+  { key: 'resume', value: 'Resume Screened' },
   { key: 'phone', value: 'Phone Screened' },
   { key: 'onsite', value: 'Onsite Interviews' },
   { key: 'reject', value: 'Rejected' },
@@ -15,9 +16,8 @@ export const HIGHLIGHT_HEADER = [
 ];
 
 export const OVERVIEW_STATUS_KEYS = ['onboard', 'offered', 'open'];
-export const OVERVIEW_HIGHLIGHT_KEYS = ['ttf', 'onboard', 'offered', 'resume', 'phone', 'onsite'];
 
-
+// export const OVERVIEW_HIGHLIGHT_KEYS = ['ttf', 'onboard', 'offered', 'resume', 'phone', 'onsite'];
 // export const OVERVIEW_HIGHLIGHT = [
 //   {
 //     name: "TTF",
