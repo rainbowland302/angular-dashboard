@@ -1,0 +1,35 @@
+@mixin flexbox() {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+@mixin highlight($top, $left, $content) {
+  &::before {
+    content: $content;
+    top: $top;
+    left: $left;
+  }
+  &::after {
+    @include calc(top, #{'#{$top} + 54px'});
+    @include calc(left, #{'#{$left} + 50px'});
+  }
+}
+@mixin legend-color($i){
+  background-color: unquote(nth($color-collection, $i));
+}

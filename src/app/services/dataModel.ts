@@ -1,4 +1,4 @@
-export const OVERVIEW_STATUS = [{ name: 'Onboard', value: 0 }, { name: 'Offered', value: 0 }, { name: 'Open', value: 0 }];
+export const OVERVIEW_STATUS = [{ name: 'Onboard', value: 0 }, { name: 'Offered', value: 0 }, { name: 'Opened Reqs', value: 0 }];
 export const OVERVIEW_HIGHLIGHT = [
   {
     name: "TTF",
