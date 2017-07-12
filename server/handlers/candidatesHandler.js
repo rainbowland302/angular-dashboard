@@ -2,13 +2,22 @@ import xlsx from 'node-xlsx';
 
 import {
   getTargetColumn,
-} from './utils'
+  reduceByGroup,
+  isPastDate,
+  flatGroup
+} from './utils';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
 const PHONE = 'Phone Interview Time';
 const ONSITE = 'TP/Onsite Interview Time';
 const REJECT = 'Interview Status';
+
+const isCV = date => date;
+const isResume = (cvDate, status) => cvDate && !!status;
+const isPhone = date => date && isPastDate(date);
+const isOnsite = date => date && isPastDate(date);
+const isReject = status => status && status.toLowerCase().indexOf('reject') >= 0;
 
 const filePath = require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx');
 
@@ -20,58 +29,11 @@ export const candidatesHandler = () => {
     phone = getTargetColumn(rawData, PHONE),
     onsite = getTargetColumn(rawData, ONSITE),
     reject = getTargetColumn(rawData, REJECT);
-  return reduceDateByGroup(groupArray, {
-    resume,
-    phone,
-    onsite,
-    reject
-  });
-}
-
-// @param group: string[]
-// @param data: {key: string[]}
-// return { name: string, key: string[] }[]
-export const reduceDateByGroup = (group, data) => {
-  let keyArray = Object.keys(data);
-
-  return group.reduce((a, b, i) => {
-    // expand origin group
-    let existIndex = a.findIndex(str => str && str.name === b);
-    if (existIndex >= 0) {
-      keyArray.forEach(key => {
-        if (key === 'reject') {
-          let status = data[key][i];
-          if (status && status.toLowerCase().indexOf('reject') >= 0) a[existIndex][key]++;
-        } else {
-          let date = data[key][i];
-          if (date && isPastDate(date)) a[existIndex][key]++;
-        }
-      });
-      return a;
-    }
-    // new group
-    let newGroup = {
-      name: b
-    };
-    keyArray.forEach(key => {
-      if (key === 'reject') {
-        let status = data[key][i];
-        if (status && status.toLowerCase().indexOf('reject') >= 0) newGroup[key] = 1;
-        else newGroup[key] = 0;
-      } else {
-        let date = data[key][i];
-        newGroup[key] = (date && isPastDate(date)) ? 1 : 0;
-      }
-    })
-    return [...a, newGroup];
-  }, []);
-}
-
-function isPastDate(date) {
-  let t;
-  if (typeof date === 'string') {
-    let tmp = new Date(date);
-    t = tmp.getTime();
-  } else t = (date - (25567 + 2)) * 86400 * 1000 // windows + 2
-  return Date.now() - t > 0 ? true : false;
-}
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject'],
+    reduceByGroup(groupArray, [resume], isCV),
+    reduceByGroup(groupArray, [resume, reject], isResume),
+    reduceByGroup(groupArray, [phone], isPhone),
+    reduceByGroup(groupArray, [onsite], isOnsite),
+    reduceByGroup(groupArray, [reject], isReject)
+  );
+};
