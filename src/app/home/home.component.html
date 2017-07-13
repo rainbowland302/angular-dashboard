@@ -8,12 +8,17 @@
   </div>
 
   <div class="sub-section">
-    <ul class="list-row">
+    <!--<ul class="list-row">
       <li *ngFor="let item of overviewHighlight">
         <span class="detail-value">{{item.value}}</span>
         <span class="detail-name">{{item.name}}</span>
       </li>
-    </ul>
+    </ul>-->
+    <standard-table
+      class="highlight-table"
+      [tableHeader]="highlightHeader"
+      [tableContent]="highlightContent">
+    </standard-table>
   </div>
 
   <div class="section-title">Hiring Status by Team</div>
