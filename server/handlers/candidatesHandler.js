@@ -1,7 +1,7 @@
 import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, isPastDate, flatGroup } from './utils/tools';
-import { isCV, isResume, isPhone, isOnsite, isReject } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
@@ -19,11 +19,14 @@ export const candidatesHandler = () => {
     phone = getTargetColumn(rawData, PHONE),
     onsite = getTargetColumn(rawData, ONSITE),
     reject = getTargetColumn(rawData, REJECT);
-  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject'],
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject'],
     reduceByGroup(groupArray, [resume], isCV),
     reduceByGroup(groupArray, [resume, reject], isResume),
     reduceByGroup(groupArray, [phone], isPhone),
     reduceByGroup(groupArray, [onsite], isOnsite),
-    reduceByGroup(groupArray, [reject], isReject)
+    reduceByGroup(groupArray, [reject], isReject),
+    reduceByGroup(groupArray, [reject, resume, phone, onsite], isResumeReject),
+    reduceByGroup(groupArray, [reject, phone, onsite], isPhoneReject),
+    reduceByGroup(groupArray, [reject, onsite], isOnsiteReject)
   );
 };

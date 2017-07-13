@@ -2,15 +2,17 @@ import { candidatesHandler } from './candidatesHandler';
 import { reqHandler} from './reqHandler';
 import { getTrend } from './trendHandler';
 
-
 export default {
   getOverview,
   getTeam,
   getTrend
 };
 
+const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject' ];
+const DEFAULTS = KEYS.reduce((a, b) => { a[b] = 0; return a }, {});
+
 function getOverview () {
-  let groupOverall = mergeGroup(reqHandler(), candidatesHandler());
+  let groupOverall = getTeam();
   let overview = groupOverall.reduce((overview, group, index) => {
     Object.keys(group).forEach(key => {
       if (key !== 'name') {
@@ -40,39 +42,26 @@ function getOverview () {
       reject: overview.reject,
       offered: overview.offered,
       onboard: overview.onboard,
+      resumeReject: overview.resumeReject,
+      phoneReject: overview.phoneReject,
+      onsiteReject: overview.onsiteReject
     }
   }
 
 }
 
 function getTeam() {
-  return mergeGroup(reqHandler(), candidatesHandler());
+  return mergeGroup([...reqHandler(), ...candidatesHandler() ], DEFAULTS)
+  .map(a => Object.assign({},a, { filled: a.offered + a.onboard, total: a.open + a.offered + a.onboard } ));
 }
 
-function mergeGroup(req, candidates) {
-
-  let defaultCandeGroup = {
-    resume: 0,
-    phone: 0,
-    onsite: 0
-  };
-  let groupOverall = req.reduce((groupOverall, reqGroup, index) => {
-    let reqGroupName = reqGroup.name.toLowerCase();
-    reqGroup.filled = reqGroup.offered + reqGroup.onboard;
-    reqGroup.total = reqGroup.open + reqGroup.filled;
-    let candeGroup = candidates.reduce((result, item) => {
-      if (reqGroupName.indexOf(item.name.toLowerCase()) !== -1) {
-        result = item;
-        //return result;
-      }
-      return result;
-    },{});
-
-    if (Object.keys(candeGroup).length !== 0) {
-      return [...groupOverall, Object.assign(reqGroup,candeGroup)];
-    } else {
-      return [...groupOverall, Object.assign(reqGroup,defaultCandeGroup)];
-    }
-  }, []);
-  return groupOverall;
+// Merge the all keys into its corresponding group name without duplicate.
+// @params groups: {name: string, ...obj}[]
+// @return {name: string, ...obj}[]
+function mergeGroup(groups, defaults) {
+  let groupNames = [...new Set(groups.map(({name})=> name))];
+  return groupNames.map(targetName => {
+    let matchGroups =  groups.filter(({name}) => name === targetName);
+    return Object.assign({}, defaults, ...matchGroups);
+  })
 }

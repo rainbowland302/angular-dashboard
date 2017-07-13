@@ -23,10 +23,13 @@ export class IsilonComponent implements OnInit {
   interviewTrend: any[] = [];
   barStep: number = 3;
 
-  public localState = { value: '' };
+  public localState = { value: 'isilon' };
 
   onOpenDialog(index) {
     let raw = this.teamDetail[index];
+    raw.resume = `${raw.resumeReject}/${raw.resume}`;
+    raw.phone = `${raw.phoneReject}/${raw.phone}`;
+    raw.onsite = `${raw.onsiteReject}/${raw.onsite}`;
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
         title: raw.name,
@@ -51,6 +54,9 @@ export class IsilonComponent implements OnInit {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
       });
+      highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
+      highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
+      highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
       this.highlightContent = [highlight];
     });
 

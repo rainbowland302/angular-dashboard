@@ -23,7 +23,7 @@ export class EcsComponent implements OnInit {
   interviewTrend: any[] = [];
   barStep: number = 3;
 
-  public localState = { value: '' };
+  public localState = { value: 'ecs' };
 
   onOpenDialog(index) {
     let raw = this.teamDetail[index];

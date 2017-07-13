@@ -1,3 +1,14 @@
+body {
+  font-family: sans-serif;
+  padding: 30px 60px;
+}
+
+button a{
+  color: initial;
+  text-decoration: none;
+  display: block;
+}
+
 .row {
   @include flexbox();
   @include clearfix();
@@ -60,10 +71,11 @@ div.legend{
     }
   }
 }
-body {
-  font-family: sans-serif;
-  padding: 30px 60px;
+
+.tip-info {
+  font-style: italic;
 }
+
 .section {
   padding: 20px 30px; // &:not(:last-child) {
   //   border-bottom: 2px dotted deepskyblue
