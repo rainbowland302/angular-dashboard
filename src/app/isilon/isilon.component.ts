@@ -26,7 +26,7 @@ export class IsilonComponent implements OnInit {
   public localState = { value: 'isilon' };
 
   onOpenDialog(index) {
-    let raw = this.teamDetail[index];
+    let raw = Object.assign({}, this.teamDetail[index]);
     raw.resume = `${raw.resumeReject}/${raw.resume}`;
     raw.phone = `${raw.phoneReject}/${raw.phone}`;
     raw.onsite = `${raw.onsiteReject}/${raw.onsite}`;
