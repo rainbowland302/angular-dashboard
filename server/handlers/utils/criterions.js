@@ -6,6 +6,9 @@ export const isResume = (cvDate, status) => cvDate && !!status;
 export const isPhone = date => date && isPastDate(date);
 export const isOnsite = date => date && isPastDate(date);
 export const isReject = status => status && status.toLowerCase().indexOf('reject') >= 0;
+export const isResumeReject = (status, resume, phone, onsite) => isReject(status) && resume && !phone && !onsite;
+export const isPhoneReject = (status, phone, onsite) => isReject(status) && phone && !onsite;
+export const isOnsiteReject = (status, onsite) => isReject(status) && onsite;
 
 // @param date: string|number
 // return boolean

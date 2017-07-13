@@ -19,6 +19,9 @@
       [tableHeader]="highlightHeader"
       [tableContent]="highlightContent">
     </standard-table>
+    <ul class="tip-info">
+      <li>xx/xx (i.e. 20/30) means “passed/total” in “Resume Uploaded”, “Resume Screened”, “Phone Screened”, “Onsite Interviews”</li>
+    </ul>
   </div>
 
   <div class="section-title">Hiring Status by Team</div>
@@ -28,7 +31,11 @@
         <bar *ngFor="let item of group; let j = index" [barData]="item" (openDialog)="onOpenDialog(i*barStep + j)"></bar>
       </div>
     </div>
-    <div class="bar-info">click to show team detail</div>
+    <div class="tip-info">click to show team detail</div>
+    <ul class="tip-info">
+      <li>Click to show team details</li>
+      <li>xx/xx (i.e 1/4) means "Filled Reqs (Offered + Onboard)/ Total Reqs"</li>
+    </ul>
   </div>
 
   <div class="section-title">Hiring Trend and Forecasting</div>
