@@ -1,0 +1,29 @@
+<div class="overview-wrapper">
+  <div class="page-title">Overview China Hiring Dashboard</div>
+
+  <div class="section-title">Hiring Overview</div>
+  <div class="section flex">
+    <pie class="pie-section" [pieData]="overviewStatus"></pie>
+    <line class="line-section overview-trend" [lineData]="reqTrend" [chartTitle]="'Filling Req Trend & Forecasting'"></line>
+  </div>
+
+  <div class="sub-section">
+    <standard-table
+      class="highlight-table"
+      [tableHeader]="highlightHeader"
+      [tableContent]="highlightContent">
+    </standard-table>
+  </div>
+
+  <div class="section-title">Hiring Status by BU</div>
+  <div class="section">
+    <button md-raised-button><a routerLink='/isilon' target="_blank">Isilon China Hiring Dashboard</a></button>
+    <button md-raised-button><a routerLink='/ecs' target="_blank">ECS China Hiring Dashboard</a></button>
+  </div>
+
+  <div class="section-title">Hiring Trend and Forecasting</div>
+  <div class="section flex">
+    <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
+    <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
+  </div>
+</div>

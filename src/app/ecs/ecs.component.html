@@ -1,0 +1,39 @@
+<div class="app-wrapper">
+  <div class="page-title">ECS China Hiring Dashboard</div>
+
+  <div class="section-title">Hiring Overview</div>
+  <div class="section flex">
+    <pie class="pie-section" [pieData]="overviewStatus"></pie>
+    <line class="line-section overview-trend" [lineData]="reqTrend" [chartTitle]="'Filling Req Trend & Forecasting'"></line>
+  </div>
+
+  <div class="sub-section">
+    <!--<ul class="list-row">
+      <li *ngFor="let item of overviewHighlight">
+        <span class="detail-value">{{item.value}}</span>
+        <span class="detail-name">{{item.name}}</span>
+      </li>
+    </ul>-->
+    <standard-table
+      class="highlight-table"
+      [tableHeader]="highlightHeader"
+      [tableContent]="highlightContent">
+    </standard-table>
+  </div>
+
+  <div class="section-title">Hiring Status by Team</div>
+  <div class="section">
+    <div class="bar-section">
+      <div *ngFor="let group of barData; let i = index">
+        <bar *ngFor="let item of group; let j = index" [barData]="item" (openDialog)="onOpenDialog(i*barStep + j)"></bar>
+      </div>
+    </div>
+    <div class="bar-info">click to show team detail</div>
+  </div>
+
+  <div class="section-title">Hiring Trend and Forecasting</div>
+  <div class="section flex">
+    <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
+    <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
+  </div>
+</div>

@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component.ts';
+import { OverviewComponent } from './overview/overview.component.ts';
+import { IsilonComponent } from './isilon/isilon.component.ts';
+import { EcsComponent } from './ecs/ecs.component.ts';
 
 import { DataResolver } from './app.resolver';
 
 export const ROUTES: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'  },
-  { path: 'home',  component: HomeComponent },
+  { path: '', redirectTo: '/isilon', pathMatch: 'full'  },
+  { path: 'overview',  component: OverviewComponent },
+  { path: 'isilon',  component: IsilonComponent },
+  { path: 'ecs',  component: EcsComponent },
 ];

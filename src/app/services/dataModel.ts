@@ -16,31 +16,3 @@ export const HIGHLIGHT_HEADER = [
 ];
 
 export const OVERVIEW_STATUS_KEYS = ['onboard', 'offered', 'open'];
-
-// export const OVERVIEW_HIGHLIGHT_KEYS = ['ttf', 'onboard', 'offered', 'resume', 'phone', 'onsite'];
-// export const OVERVIEW_HIGHLIGHT = [
-//   {
-//     name: "TTF",
-//     value: "--"
-//   },
-//   {
-//     name: "Onboard",
-//     value: "--"
-//   },
-//   {
-//     name: "offered",
-//     value: "--"
-//   },
-//   {
-//     name: "Resume Screened",
-//     value: "--"
-//   },
-//   {
-//     name: "Phone Screened",
-//     value: "--"
-//   },
-//   {
-//     name: "Onsite Interviews",
-//     value: "--"
-//   }
-// ];

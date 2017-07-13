@@ -1,4 +1,3 @@
-
 export const isOnboard = status => typeof status === 'string' && status.toLowerCase().indexOf('board') >= 0;
 export const isOffered = status => typeof status === 'string' && status.toLowerCase().indexOf('offer') >= 0;
 export const isOpen = (status, number) => typeof number === 'string' && number && !isOnboard(status) && !isOffered(status);
@@ -12,7 +11,7 @@ export const isReject = status => status && status.toLowerCase().indexOf('reject
 // return boolean
 const isPastDate = (date) => {
   let t;
-  let day = 24*3600*1000;
+  let day = 24 * 3600 * 1000;
   if (typeof date === 'string') {
     let tmp = new Date(date);
     t = tmp.getTime();

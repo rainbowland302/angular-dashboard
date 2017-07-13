@@ -3,10 +3,11 @@
 
 /* This file is for setting global styles  */
 
- @import 'variables';
- @import "~@angular/material/prebuilt-themes/indigo-pink.css";
- @import "mixins";
- @import "common";
- @import "components/line/line.component";
- @import "components/pie/pie.component";
- @import "components/bar/bar.component";
+@import 'variables';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "mixins";
+@import "common";
+@import "pages/overview";
+@import "components/line.component";
+@import "components/pie.component";
+@import "components/bar.component";
