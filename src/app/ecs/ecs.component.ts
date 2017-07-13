@@ -55,7 +55,7 @@ export class EcsComponent implements OnInit {
     });
 
     this.dashboardService.getTeam().then(teamArray => {
-      this.barData = teamArray
+        this.barData = teamArray
         .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
           return [{
             name,
@@ -69,6 +69,7 @@ export class EcsComponent implements OnInit {
           }]
         })
         .reduce((a, b, i) => {
+          //if(i==6){b.total = 1;}
           if (i % 3 === 0) return [...a, [b]]
           else {
             a[a.length - 1].push(b)

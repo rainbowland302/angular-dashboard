@@ -34,6 +34,7 @@ export class OverviewComponent implements OnInit {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
       });
+      //this.overviewStatus.status.open=18;
       this.highlightContent = [highlight];
     });
 

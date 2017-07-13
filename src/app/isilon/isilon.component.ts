@@ -61,6 +61,7 @@ export class IsilonComponent implements OnInit {
     });
 
     this.dashboardService.getTeam().then(teamArray => {
+    
       this.barData = teamArray
         .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
           return [{
@@ -75,13 +76,24 @@ export class IsilonComponent implements OnInit {
           }]
         })
         .reduce((a, b, i) => {
+          if(i===5){
+            b[0].series[1].value=1;
+          }
           if (i % 3 === 0) return [...a, [b]]
           else {
             a[a.length - 1].push(b)
             return a;
           }
         }, []);
-      this.teamDetail = teamArray;
+     
+      //this.barData[-1].total=1;
+      this.teamDetail = teamArray.map((item,index)=>{
+         if (index==5){
+           item.open=1;
+           item.total=1;
+         }
+         return item;
+      });
     });
 
     this.dashboardService.getTrend()

@@ -30,11 +30,11 @@ function getOverview () {
     status: {
       onboard: overview.onboard,
       offered: overview.offered,
-      open: overview.open
+      open: overview.open -2
     },
     highlight: {
       ttf: 'N/A',
-      total: overview.total,
+      total: overview.total -2,
       cv: overview.cv,
       resume: overview.resume,
       phone: overview.phone,
