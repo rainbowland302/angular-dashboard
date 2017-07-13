@@ -24,11 +24,11 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeModule } from './home/home.module.ts';
-import { XLargeDirective } from './home/x-large';
 
+import { OverviewModule } from './overview/overview.module';
+import { IsilonModule } from './isilon/isilon.module';
+import { EcsModule } from './ecs/ecs.module';
 import '../styles/styles.scss';
-import '../styles/headings.css';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -48,13 +48,13 @@ type StoreType = {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   /**
    * Import Angular's modules.
    */
   imports: [
-    [HomeModule],
+    [ OverviewModule, IsilonModule, EcsModule ],
     BrowserModule,
     FormsModule,
     HttpModule,

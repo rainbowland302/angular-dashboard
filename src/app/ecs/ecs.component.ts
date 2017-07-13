@@ -1,26 +1,18 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
 
 import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
-import {
-  OVERVIEW_STATUS,
-  TEAM_HEADER,
-  HIGHLIGHT_HEADER,
-  OVERVIEW_STATUS_KEYS
-} from '../services/dataModel';
+import { OVERVIEW_STATUS, TEAM_HEADER, HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
 
 @Component({
-  selector: 'home',  // <home></home>
-  templateUrl: './home.component.html',
+  selector: 'ecs',
+  templateUrl: './ecs.component.html',
   providers: [DashboardService]
 })
-export class HomeComponent implements OnInit {
+export class EcsComponent implements OnInit {
   overviewStatus: any[] = OVERVIEW_STATUS;
   highlightHeader: any[] = HIGHLIGHT_HEADER;
   highlightContent: any[] = [];
@@ -30,7 +22,6 @@ export class HomeComponent implements OnInit {
   resumeTrend: any[] = [];
   interviewTrend: any[] = [];
   barStep: number = 3;
-  //selectedOption: string;
 
   public localState = { value: '' };
 
@@ -44,9 +35,6 @@ export class HomeComponent implements OnInit {
         tableContent: [raw]
       }
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.selectedOption = result;
-    // });
   }
   /**
    * TypeScript public modifiers
@@ -64,10 +52,6 @@ export class HomeComponent implements OnInit {
         return a;
       });
       this.highlightContent = [highlight];
-      // this.overviewHighlight = OVERVIEW_HIGHLIGHT.map((a, i) => {
-      //   a.value = highlight[OVERVIEW_HIGHLIGHT_KEYS[i]];
-      //   return a;
-      // });
     });
 
     this.dashboardService.getTeam().then(teamArray => {
