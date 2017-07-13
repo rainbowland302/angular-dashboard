@@ -1,0 +1,29 @@
+.pie-section {
+  .pie-wrapper {
+    @include flexbox();
+    @include clearfix();
+  }
+  .pie-label {
+    position: absolute;
+    top: 50%;
+    animation: none !important;
+    padding: 5px;
+    background: white;
+    border-radius: 5px;
+    &:nth-last-of-type(1) {
+      right: calc(50% + 40px);
+    }
+    &:nth-last-of-type(2) {
+      left: calc(50% + 50px);
+    }
+  }
+  .pie-title {
+    text-align: center;
+  }
+  .pie-section {
+    flex: 2;
+  }
+  .pie-wrapper {
+    position: relative;
+  }
+}

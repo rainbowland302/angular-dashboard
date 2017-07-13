@@ -1,0 +1,128 @@
+nav {
+  margin-top: 16px;
+}
+
+nav a {
+  background-color: $nav-button-color;
+  color: white;
+  padding: 8px 16px;
+  margin: 8px;
+  vertical-align: middle;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.row {
+  @include flexbox();
+  @include clearfix();
+}
+// Dialog
+table {
+  margin: auto;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+td,
+th {
+  min-width: 100px;
+  text-align: center;
+  padding: 15px 5px;
+}
+
+thead tr, tbody tr:not(:last-child) {
+  border-bottom: 1px solid lightgray;
+}
+
+h1.mat-dialog-title {
+  display: inline-block;
+  &:last-of-type {
+    float: right;
+  }
+}
+.legend {
+  margin-top: 10px;
+  text-align: center;
+}
+div.legend span{
+  font-size: 15px;
+  padding: 3px 8px;
+  text-transform: capitalize;
+}
+div.legend span::before{
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+div.legend{
+  span:nth-of-type(1){
+    &:before{
+      @include legend-color(1)
+    }
+  };
+   span:nth-of-type(2){
+    &:before{
+      @include legend-color(2)
+    }
+  };
+  span:nth-of-type(3){
+    &:before{
+      @include legend-color(3)
+    }
+  }
+}
+.app-wrapper {
+  font-family: sans-serif;
+  padding: 30px 60px;
+}
+.section {
+  padding: 20px 30px; // &:not(:last-child) {
+  //   border-bottom: 2px dotted deepskyblue
+  // }
+}
+.section.flex,
+.ngx-chart {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.page-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+.section-title {
+  font-size: 20px;
+  margin-top: 16px;
+  width: 300px;
+  display: inline-block;
+  border-bottom: 3px solid deepskyblue;
+  padding-bottom: 5px;
+}
+.sub-section {
+  border-top: 1px dotted deepskyblue;
+}
+ul.list-row {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  li {
+    flex: 1;
+    span {
+      display: block;
+      text-align: center;
+      &.detail-value {
+        font-family: cursive;
+        font-size: 30px;
+      }
+    }
+  }
+}
+.line-series[ng-reflect-stroke="green"]>path,
+.line-series>path[stroke="green"] {
+  stroke-width: 5px !important;
+}

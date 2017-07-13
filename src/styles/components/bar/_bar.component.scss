@@ -1,0 +1,26 @@
+.bar-section {
+  width: 100%;
+  padding: 20px 0;
+  bar {
+    display: inline-block;
+    width: 33.3%;
+  }
+  .bar-wrapper {
+    .text-wrapper {
+      width: 320px;
+      margin: auto;
+    }
+    .bar-title {
+      margin-left: 20px;
+      color: deepskyblue;
+      cursor: pointer;
+    }
+    .bar-value {
+      float: right;
+      margin-right: 20px;
+    }
+  }
+}
+.bar-info {
+  font-style: italic;
+}
