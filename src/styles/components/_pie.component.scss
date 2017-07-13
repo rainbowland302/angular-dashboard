@@ -26,4 +26,17 @@
   .pie-wrapper {
     position: relative;
   }
+  ngx-charts-pie-chart {
+    position: relative;
+    &::before {
+      content:"Opened Reqs 20";
+      text-align: center;
+      position: absolute;
+      color: white;
+      font-size: 15px;
+      width: 100px;
+      top:120px;
+      padding: 10px;
+    }
+  }
 }
