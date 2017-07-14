@@ -5,7 +5,7 @@ export const TEAM_HEADER = [
   { key: 'resume', value: 'Resume Screened' },
   { key: 'phone', value: 'Phone Screened' },
   { key: 'onsite', value: 'Onsite Interviews' },
-  { key: 'reject', value: 'Rejected' },
+  { key: 'reject', value: 'Failed' },
   { key: 'offered', value: 'Offered' },
   { key: 'onboard', value: 'Onboard' }
 ];
