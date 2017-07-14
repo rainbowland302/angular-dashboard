@@ -9,11 +9,14 @@ const PHONE = 'Phone Interview Time';
 const ONSITE = 'TP/Onsite Interview Time';
 const REJECT = 'Interview Status';
 
-const filePath = require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx');
+const filePath = {
+  isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx'),
+  ecs: require('path').resolve(__dirname, '../assets/ECS Hiring Candidates Track Sheet.xlsx')
+}
 
 // return {name: string, resume: number, phone: number, onsite: number}[]
-export const candidatesHandler = () => {
-  const rawData = xlsx.parse(filePath)[0].data;
+export const candidatesHandler = (project) => {
+  const rawData = xlsx.parse(filePath[project])[0].data;
   let groupArray = getTargetColumn(rawData, GROUP),
     resume = getTargetColumn(rawData, RESUME),
     phone = getTargetColumn(rawData, PHONE),
