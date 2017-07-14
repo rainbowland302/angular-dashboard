@@ -4,7 +4,10 @@ import { getTargetColumn, reduceByGroup, flatGroup, removeBlockRows } from './ut
 import { isOnboard, isOffered, isOpen } from './utils/criterions';
 import { BLACK_LIST } from './utils/constants';
 
-const filePath = require('path').resolve(__dirname, '../assets/Isilon Hiring Req Track Sheet.xlsx');
+const filePath = {
+  isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Req Track Sheet.xlsx'),
+  ecs: require('path').resolve(__dirname, '../assets/ECS Hiring Plan.xlsx')
+}
 
 // Column Name
 const GROUP = 'Group';
@@ -16,8 +19,8 @@ const GROUP_MAP = {
   'IME Sustaining': 'IME Sus'
 };
 
-export const reqHandler = () => {
-  const rawData = removeBlockRows(xlsx.parse(filePath)[1].data, BLACK_LIST);
+export const reqHandler = (project) => {
+  const rawData = removeBlockRows(xlsx.parse(filePath[project])[1].data, BLACK_LIST);
     let groupArray = getTargetColumn(rawData, GROUP).map( str => {
       return GROUP_MAP[str] || str;
     }),

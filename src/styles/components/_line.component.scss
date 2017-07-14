@@ -37,11 +37,26 @@
       border-top: 10px solid rgba(10, 10, 10, 0.6);
     }
   }
-  // pseudo highlight object
-  ngx-charts-line-chart {
-    @include highlight(25%, 52%, 'Q3 FY18 \A Forecast: 20');
-  }
-  .highlight-wrapper {
-    @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 43');
-  }
+}
+
+// pseudo highlight object
+.isilon-wrapper .overview-trend ngx-charts-line-chart {
+  @include highlight(25%, 52%, 'Q3 FY18 \A Forecast: 20');
+}
+.isilon-wrapper .overview-trend .highlight-wrapper {
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 43');
+}
+// pseudo highlight object
+.ecs-wrapper .overview-trend ngx-charts-line-chart {
+  @include highlight(4%, 52%, 'Q3 FY18 \A Forecast: 24');
+}
+.ecs-wrapper .overview-trend .highlight-wrapper {
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 33');
+}
+// pseudo highlight object
+.overview-wrapper .overview-trend ngx-charts-line-chart {
+  @include highlight(16%, 52%, 'Q3 FY18 \A Forecast: 44');
+}
+.overview-wrapper .overview-trend .highlight-wrapper {
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 76');
 }
