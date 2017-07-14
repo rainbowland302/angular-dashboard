@@ -1,6 +1,11 @@
 .overview-wrapper {
-  button {
+  a.router-link {
     border: 1px solid deepskyblue;
     margin: 20px;
+    color: initial;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    display: inline-block;
   }
 }
