@@ -1,7 +1,8 @@
 import xlsx from 'node-xlsx';
 
-import { getTargetColumn, reduceByGroup, flatGroup } from './utils/tools';
+import { getTargetColumn, reduceByGroup, flatGroup, removeBlockRows } from './utils/tools';
 import { isOnboard, isOffered, isOpen } from './utils/criterions';
+import { BLACK_LIST } from './utils/constants';
 
 const filePath = require('path').resolve(__dirname, '../assets/Isilon Hiring Req Track Sheet.xlsx');
 
@@ -16,7 +17,7 @@ const GROUP_MAP = {
 };
 
 export const reqHandler = () => {
-  const rawData = xlsx.parse(filePath)[1].data;
+  const rawData = removeBlockRows(xlsx.parse(filePath)[1].data, BLACK_LIST);
     let groupArray = getTargetColumn(rawData, GROUP).map( str => {
       return GROUP_MAP[str] || str;
     }),
