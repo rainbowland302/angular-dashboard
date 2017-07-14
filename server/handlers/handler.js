@@ -11,8 +11,8 @@ export default {
 const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject' ];
 const DEFAULTS = KEYS.reduce((a, b) => { a[b] = 0; return a }, {});
 
-function getOverview () {
-  let groupOverall = getTeam();
+function getOverview (project) {
+  let groupOverall = getTeam(project);
   let overview = groupOverall.reduce((overview, group, index) => {
     Object.keys(group).forEach(key => {
       if (key !== 'name') {
@@ -50,9 +50,12 @@ function getOverview () {
 
 }
 
-function getTeam() {
-  return mergeGroup([...reqHandler(), ...candidatesHandler() ], DEFAULTS)
-  .map(a => Object.assign({},a, { filled: a.offered + a.onboard, total: a.open + a.offered + a.onboard } ));
+function getTeam(project) {
+  if (project === 'overview') {
+    return [...getTeam('ecs'), ...getTeam('isilon')];
+  }
+  return mergeGroup([...reqHandler(project), ...candidatesHandler(project) ], DEFAULTS)
+    .map(a => Object.assign({},a, { filled: a.offered + a.onboard, total: a.open + a.offered + a.onboard } ));
 }
 
 // Merge the all keys into its corresponding group name without duplicate.

@@ -22,20 +22,16 @@ export class DashboardService {
   //         });
   // }
 
-  getTrend(): Promise<any> {
-    return this._getJSON(`${API_BASE_URL}/api/trend`);
+  getTrend(state): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/${state}/trend`);
   }
 
-  getPosition(): Promise<any> {
-    return this._getJSON(`${API_BASE_URL}/api/position`);
+  getOverview(state): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/${state}/overview`);
   }
 
-  getOverview(): Promise<any> {
-    return this._getJSON(`${API_BASE_URL}/api/overview`);
-  }
-
-  getTeam(): Promise<any> {
-    return this._getJSON(`${API_BASE_URL}/api/team`);
+  getTeam(state): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/${state}/team`);
   }
 
   _getJSON(url: string): Promise<any> {

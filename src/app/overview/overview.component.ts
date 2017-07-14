@@ -29,15 +29,18 @@ export class OverviewComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.dashboardService.getOverview().then(({ status, highlight }) => {
+    this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
       this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
       });
+      highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
+      highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
+      highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
       this.highlightContent = [highlight];
     });
 
-    this.dashboardService.getTrend()
+    this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
         this.reqTrend = [{
           name: 'Trend',

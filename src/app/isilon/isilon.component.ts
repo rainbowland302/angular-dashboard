@@ -49,7 +49,7 @@ export class IsilonComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.dashboardService.getOverview().then(({ status, highlight }) => {
+    this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
       this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
@@ -60,7 +60,7 @@ export class IsilonComponent implements OnInit {
       this.highlightContent = [highlight];
     });
 
-    this.dashboardService.getTeam().then(teamArray => {
+    this.dashboardService.getTeam(this.localState.value).then(teamArray => {
       this.barData = teamArray
         .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
           return [{
@@ -84,7 +84,7 @@ export class IsilonComponent implements OnInit {
       this.teamDetail = teamArray;
     });
 
-    this.dashboardService.getTrend()
+    this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
         this.reqTrend = [{
           name: 'Trend',

@@ -26,7 +26,10 @@ export class EcsComponent implements OnInit {
   public localState = { value: 'ecs' };
 
   onOpenDialog(index) {
-    let raw = this.teamDetail[index];
+    let raw = Object.assign({}, this.teamDetail[index]);
+    raw.resume = `${raw.resumeReject}/${raw.resume}`;
+    raw.phone = `${raw.phoneReject}/${raw.phone}`;
+    raw.onsite = `${raw.onsiteReject}/${raw.onsite}`;
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
         title: raw.name,
@@ -46,15 +49,18 @@ export class EcsComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.dashboardService.getOverview().then(({ status, highlight }) => {
+    this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
       this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
         a.value = status[OVERVIEW_STATUS_KEYS[i]];
         return a;
       });
+      highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
+      highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
+      highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
       this.highlightContent = [highlight];
     });
 
-    this.dashboardService.getTeam().then(teamArray => {
+    this.dashboardService.getTeam(this.localState.value).then(teamArray => {
       this.barData = teamArray
         .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
           return [{
@@ -78,7 +84,7 @@ export class EcsComponent implements OnInit {
       this.teamDetail = teamArray;
     });
 
-    this.dashboardService.getTrend()
+    this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
         this.reqTrend = [{
           name: 'Trend',
