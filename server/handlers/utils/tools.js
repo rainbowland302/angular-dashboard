@@ -7,7 +7,7 @@ export const getTargetColumn = (data, columnName) => {
   let headers = data[0],
     values = data.slice(1),
     columnIndex = headers.indexOf(columnName);
-  return values.map(row => row[columnIndex]);
+  return values.map(row => typeof row[columnIndex] === 'string' ? row[columnIndex].trim() : row[columnIndex]);
 }
 
 // @param dateArray: string|number[]
