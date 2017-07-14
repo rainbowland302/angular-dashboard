@@ -13,7 +13,8 @@ const NUMBER = 'Req Number';
 
 const GROUP_MAP = {
   'IME DEV': 'IME Dev',
-  'IME Sustaining': 'IME Sus'
+  'IME Sustaining': 'IME Sus',
+  'One FS & Data Services': 'Data Management'
 };
 
 export const reqHandler = () => {
