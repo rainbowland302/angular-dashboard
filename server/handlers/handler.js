@@ -10,22 +10,29 @@ export default {
 
 const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject' ];
 const DEFAULTS = KEYS.reduce((a, b) => { a[b] = 0; return a }, {});
+//total is need in hightlight
+const NEWKEYS = KEYS.push('total')
 
-function getOverview (project) {
+//@params rawData{name:string,onboard:0,offered:0,open:0}[]
+//@return number
+function getTargetValueSum(rawData,key){
+  let sum =  rawData.reduce((res, group, index) =>{
+    return res+= group[key] ? group[key] : 0;
+  },0)
+  return sum;
+}
+//@params rawData{name:string,onboard:0,offered:0,open:0}[]
+//@return object[]
+function getAllValueSum(rawData){
+  let allSum = KEYS.reduce((res, key)=>{
+    res[key] = getTargetValueSum(rawData,key);
+    return res;
+  },{})
+  return allSum;
+}
+function getOverview(project){
   let groupOverall = getTeam(project);
-  let overview = groupOverall.reduce((overview, group, index) => {
-    Object.keys(group).forEach(key => {
-      if (key !== 'name') {
-        if (overview[key]) {
-          overview[key] += group[key] ? group[key] : 0;
-        } else {
-          overview[key] = group[key] ? group[key] : 0;
-        }
-      }
-    })
-    return overview;
-  }, {});
-
+  let overview = getAllValueSum(groupOverall);
   return {
     status: {
       onboard: overview.onboard,
@@ -47,7 +54,6 @@ function getOverview (project) {
       onsiteReject: overview.onsiteReject
     }
   }
-
 }
 
 function getTeam(project) {
