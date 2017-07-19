@@ -4,10 +4,11 @@ export const TEAM_HEADER = [
   { key: 'cv', value: 'Resume Uploaded' },
   { key: 'resume', value: 'Resume Screened' },
   { key: 'phone', value: 'Phone Screened' },
-  { key: 'onsite', value: 'Onsite Interviews' },
+  { key: 'onsite', value: 'TP/Onsite Interviewed' },
+  { key: 'onsitePoolAugust', value: 'Onsite Pool For August'},
   { key: 'reject', value: 'Failed' },
   { key: 'offered', value: 'Offered' },
-  { key: 'onboard', value: 'Onboard' }
+  { key: 'onboard', value: 'Onboard' },
 ];
 
 export const HIGHLIGHT_HEADER = [
