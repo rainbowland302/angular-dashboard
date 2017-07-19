@@ -19,5 +19,5 @@ const isPastDate = (date) => {
     let tmp = new Date(date);
     t = tmp.getTime();
   } else t = (date - (25567 + 2)) * 86400 * 1000 // windows + 2
-  return Date.now() - day - t > 0 ? true : false; // today is future
+  return Date.now() - t > 0 ? true : false; // today is future
 }

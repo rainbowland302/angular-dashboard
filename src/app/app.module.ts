@@ -24,10 +24,7 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-
-import { OverviewModule } from './overview/overview.module';
-import { IsilonModule } from './isilon/isilon.module';
-import { EcsModule } from './ecs/ecs.module';
+import { ProductModule } from './product/product.module';
 import '../styles/styles.scss';
 
 // Application wide providers
@@ -54,7 +51,7 @@ type StoreType = {
    * Import Angular's modules.
    */
   imports: [
-    [ OverviewModule, IsilonModule, EcsModule ],
+    [ProductModule ],
     BrowserModule,
     FormsModule,
     HttpModule,

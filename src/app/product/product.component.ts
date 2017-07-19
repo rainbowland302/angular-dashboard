@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MdDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 
 import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
@@ -8,11 +9,11 @@ import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dial
 import { OVERVIEW_STATUS, TEAM_HEADER, HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
 
 @Component({
-  selector: 'ecs',
-  templateUrl: './ecs.component.html',
+  selector: 'product',
+  templateUrl: './product.component.html',
   providers: [DashboardService]
 })
-export class EcsComponent implements OnInit {
+export class ProductComponent implements OnInit {
   overviewStatus: any[] = OVERVIEW_STATUS;
   highlightHeader: any[] = HIGHLIGHT_HEADER;
   highlightContent: any[] = [];
@@ -23,7 +24,9 @@ export class EcsComponent implements OnInit {
   interviewTrend: any[] = [];
   barStep: number = 3;
 
-  public localState = { value: 'ecs' };
+  private localState: { value:string };
+
+  //public localState = { value: 'isilon' };
 
   onOpenDialog(index) {
     let raw = Object.assign({}, this.teamDetail[index]);
@@ -45,20 +48,24 @@ export class EcsComponent implements OnInit {
   constructor(
     public appState: AppState,
     private dashboardService: DashboardService,
-    public dialog: MdDialog
+    public dialog: MdDialog,
+    private route: ActivatedRoute
   ) { }
 
   public ngOnInit() {
-    this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
-      this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
-        a.value = status[OVERVIEW_STATUS_KEYS[i]];
-        return a;
+    // get product paramater from routes params
+    this.route.params.subscribe(params => {
+      this.localState = { value:params['product'] };
+      this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
+        this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
+          a.value = status[OVERVIEW_STATUS_KEYS[i]];
+          return a;
+        });
+        highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
+        highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
+        highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
+        this.highlightContent = [highlight];
       });
-      highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
-      highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
-      highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
-      this.highlightContent = [highlight];
-    });
 
     this.dashboardService.getTeam(this.localState.value).then(teamArray => {
       this.barData = teamArray
@@ -108,5 +115,6 @@ export class EcsComponent implements OnInit {
           series: interviewExpect
         }];
       });
+    }) 
   }
 }

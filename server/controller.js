@@ -5,49 +5,21 @@ import handler from './handlers/handler';
 
 const apiRoutes = Express.Router();
 
-apiRoutes.get('/isilon/trend', (req, res) => {
-  let trend = handler.getTrend('isilon');
+apiRoutes.get('/:project/trend', (req, res) => {
+  let project = req.url.split('/')[1];
+  let trend = handler.getTrend(project);
   res.json(trend);
 });
 
-apiRoutes.get('/isilon/overview',(req, res) => {
-  let requirements = handler.getOverview('isilon');
+apiRoutes.get('/:project/overview',(req, res) => {
+  let project = req.url.split('/')[1];
+  let requirements = handler.getOverview(project);
   res.json(requirements);
 })
 
-apiRoutes.get('/isilon/team',(req, res) => {
-  let requirements = handler.getTeam('isilon');
+apiRoutes.get('/:project/team',(req, res) => {
+  let project = req.url.split('/')[1];
+  let requirements = handler.getTeam(project);
   res.json(requirements);
 })
-
-apiRoutes.get('/ecs/trend', (req, res) => {
-  let trend = handler.getTrend('ecs');
-  res.json(trend);
-});
-
-apiRoutes.get('/ecs/overview',(req, res) => {
-  let requirements = handler.getOverview('ecs');
-  res.json(requirements);
-})
-
-apiRoutes.get('/ecs/team',(req, res) => {
-  let requirements = handler.getTeam('ecs');
-  res.json(requirements);
-})
-
-apiRoutes.get('/overview/trend', (req, res) => {
-  let trend = handler.getTrend('overview');
-  res.json(trend);
-});
-
-apiRoutes.get('/overview/overview',(req, res) => {
-  let requirements = handler.getOverview('overview');
-  res.json(requirements);
-})
-
-apiRoutes.get('/overview/team',(req, res) => {
-  let requirements = handler.getTeam('overview');
-  res.json(requirements);
-})
-
 export default apiRoutes;
