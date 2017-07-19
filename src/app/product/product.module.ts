@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule} from '@angular/router';
 
 import { SharedModule } from '../components/shared.module.ts';
-import { IsilonComponent } from './isilon.component';
+import { ProductComponent } from './product.component';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
 
 // BrowserModule provides services that are essential to launch and run a browser app.
@@ -12,12 +13,13 @@ import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dial
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
   ],
   declarations: [
-    IsilonComponent
+    ProductComponent
   ],
   entryComponents: [ TeamDetailDialogComponent ]
 })
 
-export class IsilonModule { }
+export class ProductModule { }
