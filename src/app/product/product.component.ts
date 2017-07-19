@@ -24,7 +24,6 @@ export class ProductComponent implements OnInit {
   interviewTrend: any[] = [];
   barStep: number = 3;
 
-  private sub: any;
   private localState: { value:string };
 
   //public localState = { value: 'isilon' };
@@ -55,7 +54,7 @@ export class ProductComponent implements OnInit {
 
   public ngOnInit() {
     // get product paramater from routes params
-    this.sub = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.localState = { value:params['product'] };
       this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
         this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
