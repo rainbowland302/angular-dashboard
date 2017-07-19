@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
-import { OVERVIEW_STATUS, TEAM_HEADER, HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
+import { OVERVIEW_STATUS, TEAM_HEADER, ISILON_TEAM_HEADER, HIGHLIGHT_HEADER, ISILON_HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
 
 @Component({
   selector: 'product',
@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
       data: {
         title: raw.name,
         value: `${raw.filled}/${raw.total}`,
-        tableHeader: TEAM_HEADER,
+        tableHeader: this.localState.value === 'isilon' ? ISILON_TEAM_HEADER : TEAM_HEADER,
         tableContent: [raw]
       }
     });
@@ -56,6 +56,8 @@ export class ProductComponent implements OnInit {
     // get product paramater from routes params
     this.route.params.subscribe(params => {
       this.localState = { value:params['product'] };
+      if(this.localState.value ==='isilon') this.highlightHeader = ISILON_HIGHLIGHT_HEADER;
+      else this.highlightHeader = HIGHLIGHT_HEADER;
       this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
         this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
           a.value = status[OVERVIEW_STATUS_KEYS[i]];

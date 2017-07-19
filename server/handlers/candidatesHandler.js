@@ -1,13 +1,14 @@
 import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, isPastDate, flatGroup } from './utils/tools';
-import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject, isOnsitePoolAugust } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
 const PHONE = 'Phone Interview Time';
-const ONSITE = 'TP/Onsite Interview Time';
-const REJECT = 'Interview Status';
+const ONSITE = 'Onsite Interview Time';
+const TP = 'TP Interview Time';
+const STATUS = 'Interview Status';
 
 const filePath = {
   isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx'),
@@ -21,15 +22,17 @@ export const candidatesHandler = (project) => {
     resume = getTargetColumn(rawData, RESUME),
     phone = getTargetColumn(rawData, PHONE),
     onsite = getTargetColumn(rawData, ONSITE),
-    reject = getTargetColumn(rawData, REJECT);
-  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject'],
+    tp = getTargetColumn(rawData, TP),
+    status = getTargetColumn(rawData, STATUS);
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust'],
     reduceByGroup(groupArray, [resume], isCV),
-    reduceByGroup(groupArray, [resume, reject], isResume),
+    reduceByGroup(groupArray, [resume, status], isResume),
     reduceByGroup(groupArray, [phone], isPhone),
-    reduceByGroup(groupArray, [onsite], isOnsite),
-    reduceByGroup(groupArray, [reject], isReject),
-    reduceByGroup(groupArray, [reject, resume, phone, onsite], isResumeReject),
-    reduceByGroup(groupArray, [reject, phone, onsite], isPhoneReject),
-    reduceByGroup(groupArray, [reject, onsite], isOnsiteReject)
+    reduceByGroup(groupArray, [onsite, tp], isOnsite),
+    reduceByGroup(groupArray, [status], isReject),
+    reduceByGroup(groupArray, [status, resume, phone, onsite], isResumeReject),
+    reduceByGroup(groupArray, [status, phone, onsite], isPhoneReject),
+    reduceByGroup(groupArray, [status, onsite], isOnsiteReject),
+    reduceByGroup(groupArray, [status], isOnsitePoolAugust)
   );
 };
