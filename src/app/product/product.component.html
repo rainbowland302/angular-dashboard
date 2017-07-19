@@ -1,5 +1,5 @@
-<div class="ecs-wrapper">
-  <div class="page-title">ECS China Hiring Dashboard</div>
+<div class="isilon-wrapper">
+  <div class="page-title">{{localState.value.toUpperCase()}} China Hiring Dashboard</div>
 
   <div class="section-title">Hiring Overview</div>
   <div class="section flex">
@@ -19,22 +19,35 @@
   </div>
 
   <div class="section-title">Hiring Status by Team</div>
-  <div class="section">
+  <div class="section" *ngIf="localState.value!=='overview'">
     <div class="bar-section">
       <div *ngFor="let group of barData; let i = index">
         <bar *ngFor="let item of group; let j = index" [barData]="item" (openDialog)="onOpenDialog(i*barStep + j)"></bar>
       </div>
     </div>
-    <div class="tip-info">click to show team detail</div>
+    <!--<div class="tip-info">click to show team detail</div>-->
     <ul class="tip-info">
-      <li>Click to show team details</li>
+      <li>click to show team detail</li>
       <li>xx/xx (i.e 1/4) means "Filled Reqs (Offered + Onboard)/ Total Reqs"</li>
     </ul>
   </div>
 
-  <div class="section-title">Hiring Trend and Forecasting</div>
+  <div *ngIf="localState.value==='overview'">
+    <div class="section">
+      <button md-raised-button><a routerLink ='/isilon' target="_blank">Isilon China Hiring Dashboard</a></button>
+      <button md-raised-button><a routerLink='/ecs' target="_blank">ECS China Hiring Dashboard</a></button>
+    </div>
+
+    <div class="section-title">Hiring Trend and Forecasting</div>
+    <div class="section flex">
+      <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
+      <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
+    </div>
+  </div>
+
+  <!--<div class="section-title">Hiring Trend and Forecasting</div>
   <div class="section flex">
     <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
     <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
-  </div>
+  </div>-->
 </div>
