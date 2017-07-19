@@ -8,7 +8,7 @@ export default {
   getTrend
 };
 
-const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject' ];
+const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust' ];
 const DEFAULTS = KEYS.reduce((a, b) => { a[b] = 0; return a }, {});
 //total is need in hightlight
 const NEWKEYS = KEYS.push('total')
@@ -51,7 +51,8 @@ function getOverview(project){
       onboard: overview.onboard,
       resumeReject: overview.resumeReject,
       phoneReject: overview.phoneReject,
-      onsiteReject: overview.onsiteReject
+      onsiteReject: overview.onsiteReject,
+      onsitePoolAugust: overview.onsitePoolAugust
     }
   }
 }
