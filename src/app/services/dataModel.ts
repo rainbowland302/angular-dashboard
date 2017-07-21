@@ -25,6 +25,14 @@ export const HIGHLIGHT_HEADER = [
   { key: 'ttf', value: 'TTF' },
   ...TEAM_HEADER
 ];
+export const TEAM_DETAIL_HEADER = [
+  { key: 'name', value: 'Team' },
+  ...TEAM_HEADER
+];
+export const ISILON_TEAM_DETAIL_HEADER = [
+  { key: 'name', value: 'Team' },
+  ...ISILON_TEAM_HEADER
+];
 export const ISILON_HIGHLIGHT_HEADER = [
   { key: 'ttf', value: 'TTF' },
   ...ISILON_TEAM_HEADER
