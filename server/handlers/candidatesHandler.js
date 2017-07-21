@@ -1,6 +1,7 @@
 import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, isPastDate, flatGroup } from './utils/tools';
+import { GROUP_MAP } from './utils/constants';
 import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject, isOnsitePoolAugust } from './utils/criterions';
 
 const GROUP = 'Group';
@@ -18,7 +19,9 @@ const filePath = {
 // return {name: string, resume: number, phone: number, onsite: number}[]
 export const candidatesHandler = (project) => {
   const rawData = xlsx.parse(filePath[project])[0].data;
-  let groupArray = getTargetColumn(rawData, GROUP),
+    let groupArray = getTargetColumn(rawData, GROUP).map( str => {
+      return GROUP_MAP[str] || str;
+    }),
     resume = getTargetColumn(rawData, RESUME),
     phone = getTargetColumn(rawData, PHONE),
     onsite = getTargetColumn(rawData, ONSITE),
