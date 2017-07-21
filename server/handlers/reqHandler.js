@@ -2,7 +2,7 @@ import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, flatGroup, removeBlockRows } from './utils/tools';
 import { isOnboard, isOffered, isOpen } from './utils/criterions';
-import { BLACK_LIST } from './utils/constants';
+import { BLACK_LIST, GROUP_MAP } from './utils/constants';
 
 const filePath = {
   isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Req Track Sheet.xlsx'),
@@ -13,12 +13,6 @@ const filePath = {
 const GROUP = 'Group';
 const STATUS = 'Hiring Status';
 const NUMBER = 'Req Number';
-
-const GROUP_MAP = {
-  'IME DEV': 'IME Dev',
-  'IME Sustaining': 'IME Sus',
-  'One FS & Data Services': 'Data Management'
-};
 
 export const reqHandler = (project) => {
   const rawData = removeBlockRows(xlsx.parse(filePath[project])[1].data, BLACK_LIST);
