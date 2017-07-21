@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppState } from '../app.service';
 import { DashboardService } from '../services/dashboard.service';
 import { TeamDetailDialogComponent } from '../components/dialog/team-detail-dialog.component';
-import { OVERVIEW_STATUS, TEAM_HEADER, ISILON_TEAM_HEADER, HIGHLIGHT_HEADER, ISILON_HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
+import { OVERVIEW_STATUS, TEAM_HEADER, ISILON_TEAM_HEADER, HIGHLIGHT_HEADER, TEAM_DETAIL_HEADER, ISILON_TEAM_DETAIL_HEADER, ISILON_HIGHLIGHT_HEADER, OVERVIEW_STATUS_KEYS } from '../services/dataModel';
 
 @Component({
   selector: 'product',
@@ -16,7 +16,9 @@ import { OVERVIEW_STATUS, TEAM_HEADER, ISILON_TEAM_HEADER, HIGHLIGHT_HEADER, ISI
 export class ProductComponent implements OnInit {
   overviewStatus: any[] = OVERVIEW_STATUS;
   highlightHeader: any[] = HIGHLIGHT_HEADER;
+  teamdetailHeader: any[] = TEAM_DETAIL_HEADER;
   highlightContent: any[] = [];
+  teamDetailContent: any[] = [];
   teamDetail: any[] = [];
   barData: any[] = [];
   reqTrend: any[] = [];
@@ -56,8 +58,14 @@ export class ProductComponent implements OnInit {
     // get product paramater from routes params
     this.route.params.subscribe(params => {
       this.localState = { value:params['product'] };
-      if(this.localState.value ==='isilon') this.highlightHeader = ISILON_HIGHLIGHT_HEADER;
-      else this.highlightHeader = HIGHLIGHT_HEADER;
+      if(this.localState.value ==='isilon') {
+        this.highlightHeader = ISILON_HIGHLIGHT_HEADER;
+        this.teamdetailHeader = ISILON_TEAM_DETAIL_HEADER;
+      }
+      else {
+        this.highlightHeader = HIGHLIGHT_HEADER;
+        this.teamdetailHeader = TEAM_DETAIL_HEADER;
+      }
       this.dashboardService.getOverview(this.localState.value).then(({ status, highlight }) => {
         this.overviewStatus = OVERVIEW_STATUS.map((a, i) => {
           a.value = status[OVERVIEW_STATUS_KEYS[i]];
@@ -91,6 +99,13 @@ export class ProductComponent implements OnInit {
           }
         }, []);
       this.teamDetail = teamArray;
+      this.teamDetailContent = teamArray.map((team)=>{
+        let teamDetail = Object.assign({}, team);
+        teamDetail.resume = `${team.resumeReject}/${team.resume}`;
+        teamDetail.phone = `${team.phoneReject}/${team.phone}`;
+        teamDetail.onsite = `${team.onsiteReject}/${team.onsite}`;
+        return teamDetail;
+      });
     });
 
     this.dashboardService.getTrend(this.localState.value)
