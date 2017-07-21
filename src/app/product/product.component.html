@@ -50,11 +50,11 @@
     <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
     <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
   </div>-->
-    <div class="sub-section">
+  <div class="sub-section" *ngIf="localState.value!=='overview'">
     <standard-table
       class="highlight-table"
       [tableHeader]="teamdetailHeader"
       [tableContent]="teamDetailContent">
     </standard-table>
-    </div>
+  </div>
 </div>
