@@ -15,6 +15,7 @@
 #    Run image as virtual host (read more: https://github.com/jwilder/nginx-proxy):
 #    docker run -e VIRTUAL_HOST=angular-starter.your-domain.com --name angular-starter angular-starter &
 
+# Base Image
 FROM nginx:1.13.0-alpine
 
 # install console and node
@@ -35,7 +36,7 @@ RUN cd /tmp/app &&\
     npm run build:aot &&\
     mv ./dist/* /usr/share/nginx/html/
 
-# clean
+# clean (TODO should be clean in every level if not using any more)
 RUN rm -Rf /tmp/npm_inst  &&\
     rm -Rf /tmp/app &&\
     rm -Rf /root/.npm &&\
