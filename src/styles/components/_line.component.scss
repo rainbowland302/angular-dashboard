@@ -41,22 +41,22 @@
 
 // pseudo highlight object
 .isilon-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(25%, 52%, 'Q3 FY18 \A Forecast: 20');
+  @include highlight(22%, 52%, 'Q3 FY18 \A Forecast: 22');
 }
 .isilon-wrapper .overview-trend .highlight-wrapper {
   @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 43');
 }
 // pseudo highlight object
 .ecs-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(4%, 52%, 'Q3 FY18 \A Forecast: 24');
+  @include highlight(0%, 52%, 'Q3 FY18 \A Forecast: 35');
 }
 .ecs-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 33');
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 45');
 }
 // pseudo highlight object
 .overview-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(16%, 52%, 'Q3 FY18 \A Forecast: 44');
+  @include highlight(11%, 52%, 'Q3 FY18 \A Forecast: 57');
 }
 .overview-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 76');
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 88');
 }

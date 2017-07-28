@@ -43,8 +43,8 @@ export const flatGroup = (keys, ...args) => {
 // @param criterion: (data?: string|number[]): boolean => {}
 // return { name: string, value: number }[]
 export const reduceByGroup = (group, columns, criterion) => {
-  let res = [...new Set(group)].map( a => ({ name: a, value: 0 }) );
-  return group.reduce((a, b, i) => {
+  let res = [...new Set(group.filter(s => s))].map( a => ({ name: a, value: 0 }) );
+  return group.filter(s => s).reduce((a, b, i) => {
       let resIndex = a.findIndex(({name}) => name === b);
       a[resIndex].value += criterion.apply(null, columns.map(column => column[i])) ? 1 : 0;
       return a;
