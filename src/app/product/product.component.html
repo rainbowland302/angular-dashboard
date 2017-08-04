@@ -25,7 +25,6 @@
         <bar *ngFor="let item of group; let j = index" [barData]="item" (openDialog)="onOpenDialog(i*barStep + j)"></bar>
       </div>
     </div>
-    <!--<div class="tip-info">click to show team detail</div>-->
     <ul class="tip-info">
       <li>click to show team detail</li>
       <li>xx/xx (i.e 1/4) means "Filled Reqs (Offered + Onboard)/ Total Reqs"</li>
@@ -36,12 +35,6 @@
     <div class="section">
       <a class="router-link" routerLink ='/isilon' target="_blank">Isilon China Hiring Dashboard</a>
       <a class="router-link" routerLink='/ecs' target="_blank">ECS China Hiring Dashboard</a>
-    </div>
-
-    <div class="section-title">Hiring Trend and Forecasting</div>
-    <div class="section flex">
-      <line class="line-section resume-trend" [lineData]="resumeTrend" [chartTitle]="'Sourcing Resume Trend & Forecasting'" [chartWidth]="'600'"></line>
-      <line class="line-section onsite-trend" [lineData]="interviewTrend" [chartTitle]="'Onsite/Matrix Interview Trend & Forecasting'" [chartWidth]="'600'"></line>
     </div>
   </div>
 
