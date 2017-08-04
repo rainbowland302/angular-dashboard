@@ -1,8 +1,8 @@
 import xlsx from 'node-xlsx';
 
-import { getTargetColumn, reduceByGroup, isPastDate, flatGroup } from './utils/tools';
+import { getTargetColumn, reduceByGroup, isPastDate, flatGroup, getIntervalByGroup } from './utils/tools';
 import { GROUP_MAP } from './utils/constants';
-import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject, isOnsitePoolAugust } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
@@ -27,7 +27,8 @@ export const candidatesHandler = (project) => {
     onsite = getTargetColumn(rawData, ONSITE),
     tp = getTargetColumn(rawData, TP),
     status = getTargetColumn(rawData, STATUS);
-  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust'],
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust',
+    'cvPhone', 'phoneTP', 'TPOnsite', 'cvTP', 'cvOnsite', 'phoneOnsite'],
     reduceByGroup(groupArray, [resume], isCV),
     reduceByGroup(groupArray, [resume, status], isResume),
     reduceByGroup(groupArray, [phone], isPhone),
@@ -36,6 +37,12 @@ export const candidatesHandler = (project) => {
     reduceByGroup(groupArray, [status, resume, phone, onsite], isResumeReject),
     reduceByGroup(groupArray, [status, phone, onsite], isPhoneReject),
     reduceByGroup(groupArray, [status, onsite], isOnsiteReject),
-    reduceByGroup(groupArray, [status], isOnsitePoolAugust)
+    reduceByGroup(groupArray, [status], isOnsitePoolAugust),
+    getIntervalByGroup(groupArray, [resume, phone], getIntervalDay),
+    getIntervalByGroup(groupArray, [phone, tp], getIntervalDay),
+    getIntervalByGroup(groupArray, [tp, onsite], getIntervalDay),
+    getIntervalByGroup(groupArray, [resume, tp], getIntervalDay),
+    getIntervalByGroup(groupArray, [resume, onsite], getIntervalDay),
+    getIntervalByGroup(groupArray, [phone, onsite], getIntervalDay),
   );
 };

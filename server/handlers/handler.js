@@ -8,7 +8,9 @@ export default {
   getTrend
 };
 
-const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust' ];
+const KEYS = [ 'onboard', 'offered', 'open', 'cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust',
+  'cvPhone', 'phoneTP', 'TPOnsite', 'cvTP', 'cvOnsite', 'phoneOnsite' ];
+
 const DEFAULTS = KEYS.reduce((a, b) => { a[b] = 0; return a }, {});
 //total is need in hightlight
 const NEWKEYS = KEYS.push('total')
@@ -32,6 +34,7 @@ function getAllValueSum(rawData){
 }
 function getOverview(project){
   let groupOverall = getTeam(project);
+  let groupNumber = (key) => groupOverall.reduce((a,b) => a + (b[key] ? 1 : 0), 0);
   let overview = getAllValueSum(groupOverall);
   return {
     status: {
@@ -53,6 +56,14 @@ function getOverview(project){
       phoneReject: overview.phoneReject,
       onsiteReject: overview.onsiteReject,
       onsitePoolAugust: overview.onsitePoolAugust
+    },
+    avgTime: {
+      'cvPhone': Number((overview.cvPhone / groupNumber('cvPhone')).toFixed(1)),
+      'phoneTP': Number((overview.phoneTP / groupNumber('phoneTP')).toFixed(1)),
+      'TPOnsite': Number((overview.TPOnsite / groupNumber('TPOnsite')).toFixed(1)),
+      'cvTP': Number((overview.cvTP / groupNumber('cvTP')).toFixed(1)),
+      'cvOnsite': Number((overview.cvOnsite / groupNumber('cvOnsite')).toFixed(1)),
+      'phoneOnsite': Number((overview.phoneOnsite / groupNumber('phoneOnsite')).toFixed(1))
     }
   }
 }

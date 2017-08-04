@@ -1,3 +1,7 @@
+const DAY = 3600 * 24 * 1000;
+const HOUR8 = 3600 * 8 * 1000;
+const COMPENSATION = 1.5;
+
 export const isOnboard = status => typeof status === 'string' && status.toLowerCase().indexOf('board') >= 0;
 export const isOffered = status => typeof status === 'string' && status.toLowerCase().indexOf('offer') >= 0;
 export const isOpen = (status, number) => typeof number === 'string' && number && !isOnboard(status) && !isOffered(status);
@@ -11,6 +15,8 @@ export const isPhoneReject = (status, phone, onsite) => isReject(status) && phon
 export const isOnsiteReject = (status, onsite, tp) => isReject(status) && ( onsite || tp );
 export const isOnsitePoolAugust = (status) => status && status.toLowerCase().indexOf('onsite') >= 0;
 
+export const getIntervalDay = (start, end) => (start && end ) ? getWorkDayPeriod(start, end) : 0;
+
 // @param date: string|number
 // return boolean
 const isPastDate = (date) => {
@@ -21,4 +27,19 @@ const isPastDate = (date) => {
     t = tmp.getTime();
   } else t = (date - (25567 + 2)) * 86400 * 1000 // windows + 2
   return Date.now() - t > 0 ? true : false; // today is future
+}
+
+const parseDate = (date) => {
+    let res;
+    if (typeof date === 'string') res = new Date(date); // shows 0:00
+    else res = new Date((date - (25567 + 2)) * 86400 * 1000 - HOUR8); // windows + 2, shows 8:00
+    return res;
+}
+
+const getWorkDayPeriod = (start, end) => {
+  let startDate = parseDate(start), endDate = parseDate(end);
+  let lastSunday = new Date(startDate.getTime() - DAY * startDate.getDay()),
+    nextSaturday = new Date(endDate.getTime() + DAY * (6 - endDate.getDay()) );
+  let weekendDays =  Math.floor( (nextSaturday - lastSunday) / DAY / 7) * 2;
+  return (endDate - startDate) / DAY - weekendDays + COMPENSATION;
 }

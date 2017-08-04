@@ -50,3 +50,21 @@ export const reduceByGroup = (group, columns, criterion) => {
       return a;
   }, res);
 }
+
+export const getIntervalByGroup = (group, columns, criterion) => {
+  let res = [...new Set(group.filter(s => s))].map( a => ({ name: a, value: 0, count: 0 }) );
+  return group
+    .filter(s => s)
+    .reduce((a, b, i) => {
+      let resIndex = a.findIndex(({name}) => name === b),
+      cur = criterion.apply(null, columns.map(column => column[i]));
+      a[resIndex].value += cur;
+      if (cur) a[resIndex].count ++;
+      return a;
+    }, res)
+    .map( a => {
+      if(a.count) a.value = Number((a.value / a.count).toFixed(1));
+      delete a.count;
+      return a;
+    });
+}
