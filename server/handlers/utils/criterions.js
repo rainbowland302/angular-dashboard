@@ -9,13 +9,16 @@ export const isCV = date => date;
 export const isResume = (cvDate, status) => cvDate && !!status;
 export const isPhone = date => date && isPastDate(date);
 export const isOnsite = (onsiteDate, tpDate) => (onsiteDate && isPastDate(onsiteDate)) || (tpDate && isPastDate(tpDate));
+
 export const isReject = status => status && status.toLowerCase().indexOf('reject') >= 0;
-export const isResumeReject = (status, resume, phone, onsite) => isReject(status) && resume && !phone && !onsite;
-export const isPhoneReject = (status, phone, onsite) => isReject(status) && phone && !onsite;
-export const isOnsiteReject = (status, onsite, tp) => isReject(status) && ( onsite || tp );
+export const isResumeReject = (status, resume, phone, tp, onsite) => isReject(status) && resume && !phone && !tp && !onsite;
+export const isPhoneReject = (status, phone, tp, onsite) => isReject(status) && phone && !tp && !onsite;
+export const isTPReject = (status, tp, onsite) => isReject(status) && tp && !onsite;
+export const isOnsiteReject = (status, onsite) => isReject(status) && onsite ;
+
 export const isOnsitePoolAugust = (status) => status && status.toLowerCase().indexOf('onsite') >= 0;
 
-export const getIntervalDay = (start, end) => (start && end ) ? getWorkDayPeriod(start, end) : 0;
+export const getIntervalDay = (start, end) => (start && end ) ? getWorkDayPeriod(start, end) : null;
 
 // @param date: string|number
 // return boolean

@@ -2,7 +2,7 @@ import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, isPastDate, flatGroup, getIntervalByGroup } from './utils/tools';
 import { GROUP_MAP } from './utils/constants';
-import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isOnsiteReject, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isTPReject, isOnsiteReject, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
@@ -24,25 +24,35 @@ export const candidatesHandler = (project) => {
     }),
     resume = getTargetColumn(rawData, RESUME),
     phone = getTargetColumn(rawData, PHONE),
-    onsite = getTargetColumn(rawData, ONSITE),
     tp = getTargetColumn(rawData, TP),
-    status = getTargetColumn(rawData, STATUS);
-  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'onsiteReject', 'onsitePoolAugust',
+    onsite = getTargetColumn(rawData, ONSITE),
+    status = getTargetColumn(rawData, STATUS),
+    flatPhone = flatTime(phone, resume, tp, onsite),
+    flatTP = flatTime(tp, flatPhone, onsite);
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'tpReject', 'onsiteReject', 'onsitePoolAugust',
     'cvPhone', 'phoneTP', 'TPOnsite', 'cvTP', 'cvOnsite', 'phoneOnsite'],
     reduceByGroup(groupArray, [resume], isCV),
     reduceByGroup(groupArray, [resume, status], isResume),
     reduceByGroup(groupArray, [phone], isPhone),
     reduceByGroup(groupArray, [onsite, tp], isOnsite),
     reduceByGroup(groupArray, [status], isReject),
-    reduceByGroup(groupArray, [status, resume, phone, onsite], isResumeReject),
-    reduceByGroup(groupArray, [status, phone, onsite], isPhoneReject),
+    reduceByGroup(groupArray, [status, resume, phone, tp, onsite], isResumeReject),
+    reduceByGroup(groupArray, [status, phone, tp, onsite], isPhoneReject),
+    reduceByGroup(groupArray, [status, tp, onsite], isTPReject),
     reduceByGroup(groupArray, [status, onsite], isOnsiteReject),
     reduceByGroup(groupArray, [status], isOnsitePoolAugust),
     getIntervalByGroup(groupArray, [resume, phone], getIntervalDay),
-    getIntervalByGroup(groupArray, [phone, tp], getIntervalDay),
-    getIntervalByGroup(groupArray, [tp, onsite], getIntervalDay),
-    getIntervalByGroup(groupArray, [resume, tp], getIntervalDay),
+    getIntervalByGroup(groupArray, [phone, flatTP], getIntervalDay),
+    getIntervalByGroup(groupArray, [flatTP, onsite], getIntervalDay),
+    getIntervalByGroup(groupArray, [resume, flatTP], getIntervalDay),
     getIntervalByGroup(groupArray, [resume, onsite], getIntervalDay),
     getIntervalByGroup(groupArray, [phone, onsite], getIntervalDay),
   );
 };
+
+const flatTime = (tar, can, ...con) => {
+  return tar.map((a, i) => {
+    if(con.map((b, j) => b[i]).find(a => a) && !a) return can[i];
+    return a;
+  });
+}

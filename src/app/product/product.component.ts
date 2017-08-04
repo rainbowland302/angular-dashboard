@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
     let raw = Object.assign({}, this.teamDetail[index]);
     raw.resume = `${raw.resumeReject}/${raw.resume}`;
     raw.phone = `${raw.phoneReject}/${raw.phone}`;
-    raw.onsite = `${raw.onsiteReject}/${raw.onsite}`;
+    raw.onsite = `${raw.tpReject + raw.onsiteReject}/${raw.onsite}`;
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
         title: raw.name,
@@ -73,7 +73,7 @@ export class ProductComponent implements OnInit {
         });
         highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
         highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
-        highlight.onsite = `${highlight.onsiteReject}/${highlight.onsite}`;
+        highlight.onsite = `${highlight.tpReject + highlight.onsiteReject}/${highlight.onsite}`;
         this.highlightContent = [highlight];
       });
 
@@ -103,7 +103,7 @@ export class ProductComponent implements OnInit {
         let teamDetail = Object.assign({}, team);
         teamDetail.resume = `${team.resumeReject}/${team.resume}`;
         teamDetail.phone = `${team.phoneReject}/${team.phone}`;
-        teamDetail.onsite = `${team.onsiteReject}/${team.onsite}`;
+        teamDetail.onsite = `${team.tpReject + team.onsiteReject}/${team.onsite}`;
         return teamDetail;
       });
     });
@@ -132,6 +132,6 @@ export class ProductComponent implements OnInit {
           series: interviewExpect
         }];
       });
-    }) 
+    })
   }
 }

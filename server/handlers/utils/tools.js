@@ -59,7 +59,7 @@ export const getIntervalByGroup = (group, columns, criterion) => {
       let resIndex = a.findIndex(({name}) => name === b),
       cur = criterion.apply(null, columns.map(column => column[i]));
       a[resIndex].value += cur;
-      if (cur) a[resIndex].count ++;
+      if (cur !== null) a[resIndex].count ++;
       return a;
     }, res)
     .map( a => {
