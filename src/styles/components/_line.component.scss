@@ -48,15 +48,15 @@
 }
 // pseudo highlight object
 .ecs-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(0%, 52%, 'Q3 FY18 \A Forecast: 35');
+  @include highlight(1%, 52%, 'Q3 FY18 \A Forecast: 29');
 }
 .ecs-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 45');
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 38');
 }
 // pseudo highlight object
 .overview-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(11%, 52%, 'Q3 FY18 \A Forecast: 57');
+  @include highlight(12%, 52%, 'Q3 FY18 \A Forecast: 51');
 }
 .overview-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 88');
+  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 81');
 }
