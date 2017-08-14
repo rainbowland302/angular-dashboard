@@ -2,7 +2,7 @@ import xlsx from 'node-xlsx';
 
 import { getTargetColumn, reduceByGroup, isPastDate, flatGroup, getIntervalByGroup } from './utils/tools';
 import { GROUP_MAP } from './utils/constants';
-import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isTPReject, isOnsiteReject, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isTPReject, isOnsiteReject, isOffered, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
@@ -29,7 +29,7 @@ export const candidatesHandler = (project) => {
     status = getTargetColumn(rawData, STATUS),
     flatPhone = flatTime(phone, resume, tp, onsite),
     flatTP = flatTime(tp, flatPhone, onsite);
-  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'tpReject', 'onsiteReject', 'onsitePoolAugust',
+  return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'tpReject', 'onsiteReject', 'hirable', 'onsitePoolAugust',
     'cvPhone', 'phoneTP', 'TPOnsite', 'cvTP', 'cvOnsite', 'phoneOnsite'],
     reduceByGroup(groupArray, [resume], isCV),
     reduceByGroup(groupArray, [resume, status], isResume),
@@ -40,6 +40,7 @@ export const candidatesHandler = (project) => {
     reduceByGroup(groupArray, [status, phone, tp, onsite], isPhoneReject),
     reduceByGroup(groupArray, [status, tp, onsite], isTPReject),
     reduceByGroup(groupArray, [status, onsite], isOnsiteReject),
+    reduceByGroup(groupArray, [status], isOffered),
     reduceByGroup(groupArray, [status], isOnsitePoolAugust),
     getIntervalByGroup(groupArray, [resume, phone], getIntervalDay),
     getIntervalByGroup(groupArray, [phone, flatTP], getIntervalDay),
