@@ -26,6 +26,15 @@ th {
   min-width: 100px;
   text-align: center;
   padding: 15px 5px;
+
+  &.highlight-blue {
+    color: deepskyblue;
+    font-weight: bold;
+  }
+  &.highlight-green {
+    color: green;
+    font-weight: bold;
+  }
 }
 
 thead tr, tbody tr:not(:last-child) {
@@ -81,7 +90,7 @@ div.legend{
   //   border-bottom: 2px dotted deepskyblue
   // }
   margin-left:-40px;
- 
+
 }
 .section.flex,
 .ngx-chart {

@@ -8,7 +8,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let rowContent of tableContent">
-      <td *ngFor="let head of tableHeader ">
+      <td *ngFor="let head of tableHeader "
+        [ngClass]="{'highlight-blue': head.key === 'hirable', 'highlight-green': head.key === 'offered'}">
         {{rowContent[head.key]}}
       </td>
     </tr>
