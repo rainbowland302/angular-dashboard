@@ -5,7 +5,7 @@ export const ISILON_TEAM_HEADER = [
   { key: 'resume', value: 'Resume Screened' },
   { key: 'phone', value: 'Phone Screened' },
   { key: 'onsite', value: 'TP/Onsite Interviewed' },
-  { key: 'onsitePoolAugust', value: 'Onsites For August'},
+//  { key: 'onsitePoolAugust', value: 'Onsites For August'},
   { key: 'reject', value: 'Failed' },
   { key: 'hirable', value: 'Hirable'},
   { key: 'offered', value: 'Offered' },

@@ -1,0 +1,354 @@
+============== You are in PRODUCTION MODE ==============
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::3005
+    at Object.exports._errnoException (util.js:1050:11)
+    at exports._exceptionWithHostPort (util.js:1073:20)
+    at Server.setupListenHandle [as _listen2] (net.js:1259:14)
+    at listenInCluster (net.js:1307:12)
+    at Server.listen (net.js:1406:7)
+    at Function.listen (/root/angular-dashboard/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/root/angular-dashboard/server/server.js:22:5)
+    at Module._compile (module.js:571:32)
+    at loader (/root/angular-dashboard/node_modules/babel-register/lib/node.js:144:5)
+    at Object.require.extensions.(anonymous function) [as .js] (/root/angular-dashboard/node_modules/babel-register/lib/node.js:154:7)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+Error: ENOENT: no such file or directory, open '/root/angular-dashboard/server/assets/Isilon Hiring Candidates Track Sheet.xlsx'
+    at Object.fs.openSync (fs.js:584:18)
+    at Object.fs.readFileSync (fs.js:491:33)
+    at readSync (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12479:52)
+    at Object.readFileSync (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12492:9)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:25:24)
+    at /root/angular-dashboard/server/controller.js:9:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:63:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:34:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:63:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:34:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:34:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:24:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:34:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:64:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+events.js:163
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE :::3005
+    at Object.exports._errnoException (util.js:1050:11)
+    at exports._exceptionWithHostPort (util.js:1073:20)
+    at Server.setupListenHandle [as _listen2] (net.js:1259:14)
+    at listenInCluster (net.js:1307:12)
+    at Server.listen (net.js:1406:7)
+    at Function.listen (/root/angular-dashboard/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/root/angular-dashboard/server/server.js:22:5)
+    at Module._compile (module.js:571:32)
+    at loader (/root/angular-dashboard/node_modules/babel-register/lib/node.js:144:5)
+    at Object.require.extensions.(anonymous function) [as .js] (/root/angular-dashboard/node_modules/babel-register/lib/node.js:154:7)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:36:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:36:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:36:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at Object.getTrend (/root/angular-dashboard/server/handlers/trendHandler.js:33:24)
+    at /root/angular-dashboard/server/controller.js:10:23
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at /root/angular-dashboard/node_modules/express/lib/router/index.js:281:22
+TypeError: Cannot read property 'substr' of undefined
+    at firstbyte (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12455:40)
+    at Object.readSync [as read] (/root/angular-dashboard/node_modules/node-xlsx/node_modules/xlsx/xlsx.js:12480:14)
+    at Object.parse (/root/angular-dashboard/node_modules/node-xlsx/src/index.js:7:21)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:40)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/root/angular-dashboard/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005

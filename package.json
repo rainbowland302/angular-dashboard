@@ -35,7 +35,7 @@
     "preversion": "npm test",
     "rimraf": "rimraf",
     "server:dev:hmr": "npm run server:dev -- --inline --hot",
-    "server:node": "babel-node server/server.js",
+    "server:node": "nohup babel-node server/server.js &",
     "server:node:debug": "babel-node --inspect --debug-brk server/server.js",
     "server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
     "server:prod": "http-server dist -c-1 --cors",
