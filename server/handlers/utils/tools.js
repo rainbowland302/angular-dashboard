@@ -1,7 +1,7 @@
 export const removeBlockRows = (data, list) => data.filter(row => list.filter(number => {
-  if(row.indexOf(number)>= 0){
-	console.log(number);
-  	return true;
+  if(row.indexOf(number)>= 0) {
+    console.log(number);
+    return true;
   }
   else return false
 }).length === 0);
