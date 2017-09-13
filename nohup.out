@@ -352,3 +352,71 @@ TypeError: Cannot read property 'substr' of undefined
 ==> Listening on port 3005
 ============== You are in PRODUCTION MODE ==============
 ==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+ReferenceError: num is not defined
+    at /root/angular-dashboard/server/handlers/utils/tools.js:3:14
+    at Array.filter (native)
+    at /root/angular-dashboard/server/handlers/utils/tools.js:1:72
+    at Array.filter (native)
+    at removeBlockRows (/root/angular-dashboard/server/handlers/utils/tools.js:1:53)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:19)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:36:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+ReferenceError: num is not defined
+    at /root/angular-dashboard/server/handlers/utils/tools.js:3:14
+    at Array.filter (native)
+    at /root/angular-dashboard/server/handlers/utils/tools.js:1:72
+    at Array.filter (native)
+    at removeBlockRows (/root/angular-dashboard/server/handlers/utils/tools.js:1:53)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:19)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+ReferenceError: num is not defined
+    at /root/angular-dashboard/server/handlers/utils/tools.js:3:14
+    at Array.filter (native)
+    at /root/angular-dashboard/server/handlers/utils/tools.js:1:72
+    at Array.filter (native)
+    at removeBlockRows (/root/angular-dashboard/server/handlers/utils/tools.js:1:53)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:19)
+    at getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at Object.getOverview (/root/angular-dashboard/server/handlers/handler.js:36:22)
+    at /root/angular-dashboard/server/controller.js:16:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+ReferenceError: num is not defined
+    at /root/angular-dashboard/server/handlers/utils/tools.js:3:14
+    at Array.filter (native)
+    at /root/angular-dashboard/server/handlers/utils/tools.js:1:72
+    at Array.filter (native)
+    at removeBlockRows (/root/angular-dashboard/server/handlers/utils/tools.js:1:53)
+    at reqHandler (/root/angular-dashboard/server/handlers/reqHandler.js:18:19)
+    at Object.getTeam (/root/angular-dashboard/server/handlers/handler.js:77:25)
+    at /root/angular-dashboard/server/controller.js:22:30
+    at Layer.handle [as handle_request] (/root/angular-dashboard/node_modules/express/lib/router/layer.js:95:5)
+    at next (/root/angular-dashboard/node_modules/express/lib/router/route.js:137:13)
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+184379BR
+184379BR
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005
+============== You are in PRODUCTION MODE ==============
+==> Listening on port 3005

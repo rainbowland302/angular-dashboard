@@ -1,4 +1,10 @@
-export const removeBlockRows = (data, list) => data.filter(row => list.filter(number=> row.indexOf(number)>= 0).length === 0);
+export const removeBlockRows = (data, list) => data.filter(row => list.filter(number => {
+  if(row.indexOf(number)>= 0){
+	console.log(number);
+  	return true;
+  }
+  else return false
+}).length === 0);
 
 // @param data: any[][]
 // @param columnName: string
