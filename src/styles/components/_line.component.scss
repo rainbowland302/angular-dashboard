@@ -9,33 +9,34 @@
     text-align: center;
   }
 }
-.overview-trend{
-  .highlight-wrapper {
-    @include flexbox();
-    @include clearfix();
+
+.highlight-wrapper,
+.ecs-wrapper .highlight-wrapper2 {
+  @include flexbox();
+  @include clearfix();
+}
+.highlight-wrapper,
+.ecs-wrapper .highlight-wrapper2,
+ngx-charts-line-chart {
+  position: relative;
+  &::before {
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    background-color: rgba(10, 10, 10, 0.6);
+    padding: 10px;
+    border-radius: 10px;
   }
-  .highlight-wrapper,
-  ngx-charts-line-chart {
-    position: relative;
-    &::before {
-      text-align: center;
-      position: absolute;
-      color: white;
-      font-size: 15px;
-      width: 100px;
-      background-color: rgba(10, 10, 10, 0.6);
-      padding: 10px;
-      border-radius: 10px;
-    }
-    &::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 10px solid rgba(10, 10, 10, 0.6);
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(10, 10, 10, 0.6);
   }
 }
 
@@ -48,10 +49,13 @@
 }
 // pseudo highlight object
 .ecs-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(1%, 52%, 'Q3 FY18 \A Forecast: 29');
+  @include highlight(12%, 36%, 'Q3 FY18 \A Forecast: 29');
 }
 .ecs-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 38');
+  @include highlight(-4%, 63%, ' Q4 FY18 \A Forecast: 38');
+}
+.ecs-wrapper .overview-trend .highlight-wrapper2 {
+  @include highlight(-18%, 90%, ' Q1 FY19 \A Forecast: 46');
 }
 // pseudo highlight object
 .overview-wrapper .overview-trend ngx-charts-line-chart {

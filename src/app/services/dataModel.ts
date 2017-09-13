@@ -18,7 +18,7 @@ export const TEAM_HEADER = [
   { key: 'phone', value: 'Phone Screened' },
   { key: 'onsite', value: 'TP/Onsite Interviewed' },
   { key: 'reject', value: 'Failed' },
-  { key: 'hirable', value: 'Hirable'},
+ // { key: 'hirable', value: 'Hirable'},
   { key: 'offered', value: 'Offered' },
   { key: 'onboard', value: 'Onboard' },
 ];
