@@ -11,12 +11,14 @@
 }
 
 .highlight-wrapper,
-.ecs-wrapper .highlight-wrapper2 {
+.ecs-wrapper .highlight-wrapper2,
+.overview-wrapper .highlight-wrapper2 {
   @include flexbox();
   @include clearfix();
 }
 .highlight-wrapper,
 .ecs-wrapper .highlight-wrapper2,
+.overview-wrapper .highlight-wrapper2,
 ngx-charts-line-chart {
   position: relative;
   &::before {
@@ -59,8 +61,11 @@ ngx-charts-line-chart {
 }
 // pseudo highlight object
 .overview-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(12%, 52%, 'Q3 FY18 \A Forecast: 51');
+  @include highlight(12%, 36%, 'Q3 FY18 \A Forecast: 51');
 }
 .overview-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 81');
+  @include highlight(-13%, 63%, ' Q4 FY18 \A Forecast: 81');
+}
+.overview-wrapper .overview-trend .highlight-wrapper2 {
+  @include highlight(17%, 90%, ' Q1 FY19 \A Forecast: 46');
 }

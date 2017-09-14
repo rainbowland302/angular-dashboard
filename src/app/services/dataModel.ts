@@ -20,7 +20,7 @@ export const TEAM_HEADER = [
   { key: 'reject', value: 'Failed' },
  // { key: 'hirable', value: 'Hirable'},
   { key: 'offered', value: 'Offered' },
-  { key: 'onboard', value: 'Onboard' },
+ // { key: 'onboard', value: 'Onboard' },
 ];
 
 export const HIGHLIGHT_HEADER = [

@@ -24,6 +24,7 @@
     content: $content;
     top: $top;
     left: $left;
+    z-index: 1
   }
   &::after {
     @include calc(top, #{'#{$top} + 54px'});
