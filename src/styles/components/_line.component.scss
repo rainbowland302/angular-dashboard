@@ -42,6 +42,13 @@ ngx-charts-line-chart {
   }
 }
 
+// override legend color
+.line-section div.legend span:nth-of-type(3) {
+    &:before{
+      @include legend-color(4)
+    }
+}
+
 // pseudo highlight object
 .isilon-wrapper .overview-trend ngx-charts-line-chart {
   @include highlight(22%, 52%, 'Q3 FY18 \A Forecast: 22');

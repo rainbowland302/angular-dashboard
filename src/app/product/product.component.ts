@@ -22,8 +22,6 @@ export class ProductComponent implements OnInit {
   teamDetail: any[] = [];
   barData: any[] = [];
   reqTrend: any[] = [];
-  resumeTrend: any[] = [];
-  interviewTrend: any[] = [];
   barStep: number = 3;
 
   private localState: { value:string };
@@ -109,27 +107,16 @@ export class ProductComponent implements OnInit {
     });
 
     this.dashboardService.getTrend(this.localState.value)
-      .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect }) => {
+      .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect, onboardReal }) => {
         this.reqTrend = [{
           name: 'Trend',
           series: reqReal
         }, {
           name: 'Forecast',
           series: reqExpect
-        }];
-        this.resumeTrend = [{
-          name: 'Trend',
-          series: resumeReal
         }, {
-          name: 'Forecast',
-          series: resumeExpect
-        }];
-        this.interviewTrend = [{
-          name: 'Trend',
-          series: interviewReal
-        }, {
-          name: 'Forecast',
-          series: interviewExpect
+          name: 'Onboard',
+          series: onboardReal
         }];
       });
     })

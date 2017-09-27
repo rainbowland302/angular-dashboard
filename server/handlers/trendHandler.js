@@ -1,4 +1,5 @@
 import xlsx from 'node-xlsx';
+import fs from 'fs';
 
 import { getTargetColumn, getLastSunday } from './utils/tools'
 const ecsExpName = genterateWeekDomain(new Date('2017/6/25'), new Date('2018/4/29'));
@@ -10,13 +11,9 @@ const reqExpValue = {
   ecs:      [0, 0, 0, 0, 1, 2, 3, 4, 6, 8, 10, 12, 14, 16, 19, 22, 24, 26, 29, 30, 30, 31, 31, 32, 32, 33, 34, 35, 35, 36, 37, 38, 39, 40, 40, 41, 41, 42, 42, 43, 43, 44, 45, 46, 46],
 }
 reqExpValue['overview'] = reqExpValue.ecs.map((num, i) => num + (reqExpValue.isilon[i] || 0) );
-// tmp hard code
-const reqReal = {
-  isilon: [0, 0, 0, 1, 1, 1, 1, 1, 7, 8, 14, 16, 18, 20],
-  ecs: [0, 0, 0, 2, 8, 14, 16, 18, 18, 19, 20, 32, 32, 33],
-  overview: [0, 0, 0, 3, 9, 15, 17, 19, 25, 27, 34, 48, 50, 53]
-}
-const interviewReal = [0, 0, 0];
+
+const reqReal = {};
+const onboardReal = {};
 
 const RESUME = 'CV Upload Date';
 const ONSITE = 'TP/Onsite Interview Time';
@@ -24,24 +21,24 @@ const ONSITE = 'TP/Onsite Interview Time';
 const filePath = {
   isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx'),
   ecs: require('path').resolve(__dirname, '../assets/ECS Hiring Candidates Track Sheet.xlsx'),
-  overview: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx')
+  overview: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx'),
+  isilonOfferTrend: require('path').resolve(__dirname, '../assets/isilon-offer-trend'),
+  isilonOnboardTrend: require('path').resolve(__dirname, '../assets/isilon-onboard-trend'),
+  ecsOfferTrend: require('path').resolve(__dirname, '../assets/ecs-offer-trend'),
+  ecsOnboardTrend: require('path').resolve(__dirname, '../assets/ecs-onboard-trend')
 }
 
 // return {name: string, resume: number, phone: number, onsite: number}[]
 export const getTrend = (project) => {
   const rawData = xlsx.parse(filePath[project])[0].data;
+  const trendData = loadTrendDate();
   let resume = getTargetColumn(rawData, RESUME),
     onsite = getTargetColumn(rawData, ONSITE);
   let expName = project === 'isilon' ? isilonExpName : ecsExpName;
   return {
-    resumeExpect: getCombined(expName, resumeExpValue),
-    interviewExpect: getCombined(expName, onsiteExpValue),
     reqExpect: getCombined(expName, reqExpValue[project]),
-    resumeReal: reduceByDate(getLastSunday(resume)),
     reqReal: getCombined(expName, reqReal[project]),
-    interviewReal: getCombined(expName, interviewReal)
-    //interviewReal: reduceByDate(getLastSunday(onsite)),
-    //reqReal: []
+    onboardReal: getCombined(expName, onboardReal[project])
   }
 }
 
@@ -89,4 +86,14 @@ function genterateWeekDomain(start, end) {
     startTime += weekPeriod;
   }
   return strArr;
+}
+
+function loadTrendDate() {
+  reqReal.isilon = fs.readFileSync(filePath.isilonOfferTrend, 'utf-8').split('\n').filter(a => a).map(a => Number(a));
+  onboardReal.isilon = fs.readFileSync(filePath.isilonOnboardTrend, 'utf-8').split('\n').filter(a => a).map(a => Number(a))
+  reqReal.ecs = fs.readFileSync(filePath.ecsOfferTrend, 'utf-8').split('\n').filter(a => a).map(a => Number(a))
+  onboardReal.ecs = fs.readFileSync(filePath.ecsOnboardTrend, 'utf-8').split('\n').filter(a => a).map(a => Number(a))
+
+  reqReal.overview = reqReal.isilon.map((a, i) => a + reqReal.ecs[i]);
+  onboardReal.overview = onboardReal.isilon.map((a, i) => a + onboardReal.ecs[i]);
 }
