@@ -12,9 +12,9 @@ const reqExpValue = {
 reqExpValue['overview'] = reqExpValue.ecs.map((num, i) => num + (reqExpValue.isilon[i] || 0) );
 // tmp hard code
 const reqReal = {
-  isilon: [0, 0, 0, 1, 1, 1, 1, 1, 7, 8, 14, 16],
-  ecs: [0, 0, 0, 2, 8, 14, 16, 18, 18, 19, 20, 32],
-  overview: [0, 0, 0, 3, 9, 15, 17, 19, 25, 27, 34, 48]
+  isilon: [0, 0, 0, 1, 1, 1, 1, 1, 7, 8, 14, 16, 18, 20],
+  ecs: [0, 0, 0, 2, 8, 14, 16, 18, 18, 19, 20, 32, 32, 33],
+  overview: [0, 0, 0, 3, 9, 15, 17, 19, 25, 27, 34, 48, 50, 53]
 }
 const interviewReal = [0, 0, 0];
 

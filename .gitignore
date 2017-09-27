@@ -75,3 +75,4 @@ dll/
 # assets #
 *.xlsx
 *.xls
+/server/assets/**
