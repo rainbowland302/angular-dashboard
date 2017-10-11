@@ -31,6 +31,44 @@ export const getLastSunday = (dateArray) => {
     });
 }
 
+// @param start: Date{}
+// @param end: Date{}
+export const genterateWeekDomain = (start, end) => {
+  const weekPeriod = 7 * 24 * 3600 * 1000;
+  let strArr = [],
+  startTime = start.getTime(),
+  endTime = end.getTime();
+  while(startTime <= endTime) {
+    let tmp = new Date(startTime);
+    strArr.push(tmp.getMonth() + 1 + '/' + tmp.getDate());
+    startTime += weekPeriod;
+  }
+  return strArr;
+}
+
+// @param dateArray: string[]
+// return {name: string, value: number}[]
+export const reduceByDate = (dateArray) => {
+  return dateArray
+    .reduce((a, b) => {
+      let exitIndex = a.findIndex(str => str && str.name === b);
+      if (exitIndex >= 0) {
+        a[exitIndex].value++;
+        return a;
+      }
+      return [...a, {
+        name: b,
+        value: 1
+      }];
+    }, [])
+    .reduce((a, b) => {
+      return a.length ? [...a, {
+        name: b.name,
+        value: a[a.length - 1].value + b.value
+      }] : [b];
+    }, []);
+}
+
 // @param keys: string[]
 // @param args: { name: string, value: number }[][]
 // return {name: string, ..obj}[]

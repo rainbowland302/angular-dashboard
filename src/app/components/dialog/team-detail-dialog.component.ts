@@ -1,5 +1,5 @@
 import { Component, NgModule, Inject, EventEmitter } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'teamDetailDialog',
@@ -7,6 +7,6 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 })
 export class TeamDetailDialogComponent {
   constructor(
-    public dialogRef: MdDialogRef<TeamDetailDialogComponent>,
-    @Inject(MD_DIALOG_DATA) public data: any) { }
+    public dialogRef: MatDialogRef<TeamDetailDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 }

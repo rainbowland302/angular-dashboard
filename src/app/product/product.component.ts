@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 
 import { AppState } from '../app.service';
@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
   constructor(
     public appState: AppState,
     private dashboardService: DashboardService,
-    public dialog: MdDialog,
+    public dialog: MatDialog,
     private route: ActivatedRoute
   ) { }
 
@@ -110,13 +110,13 @@ export class ProductComponent implements OnInit {
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect, onboardReal }) => {
         this.reqTrend = [{
           name: 'Trend',
-          series: reqReal
+          series: reqReal || reqExpect
         }, {
           name: 'Forecast',
           series: reqExpect
         }, {
           name: 'Onboard',
-          series: onboardReal
+          series: onboardReal || reqExpect
         }];
       });
     })
