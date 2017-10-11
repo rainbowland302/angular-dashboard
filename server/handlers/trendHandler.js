@@ -10,13 +10,11 @@ const filePath = {
 }
 
 export const getTrend = (project) => {
-  const trendData = loadTrendDate();
   let dateRange = genterateWeekDomain(DATE_RANGE[project].START, DATE_RANGE[project].END);
-
   return {
     reqExpect: getCombined(dateRange, EXPECT_OFFER_TREND[project]),
-    reqReal: getCombined(dateRange, getRealOfferArray(project)),
-    onboardReal: getCombined(dateRange, getRealOnboardArray(project))
+    // reqReal: getCombined(dateRange, getRealOfferArray(project)),
+    // onboardReal: getCombined(dateRange, getRealOnboardArray(project))
   }
 }
 
@@ -34,5 +32,5 @@ function getRealOfferArray(project) {
 }
 
 function getRealOnboardArray(project) {
-  
+
 }

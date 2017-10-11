@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { MdDialogModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
 
 import { PieComponent } from './pie/pie.component';
 import { BarComponent } from './bar/bar.component';
@@ -17,7 +17,7 @@ const SHARED_COMPONENTS = [PieComponent, BarComponent, LineComponent, StandardTa
     CommonModule,
     NgxChartsModule,
     BrowserAnimationsModule,
-    MdDialogModule
+    MatDialogModule
   ],
   declarations: SHARED_COMPONENTS,
   exports: SHARED_COMPONENTS
