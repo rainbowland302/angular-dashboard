@@ -7,6 +7,7 @@ import { EXPECT_OFFER_TREND, DATE_RANGE } from './utils/constants';
 const filePath = {
   isilon: require('path').resolve(__dirname, '../assets/isilon-offer-trend'),
   ecs: require('path').resolve(__dirname, '../assets/ecs-offer-trend'),
+  overview: require('path').resolve(__dirname, '../assets/overview-offer-trend'),
 }
 
 const reqTrackFilePath = {
@@ -18,8 +19,9 @@ export const getTrend = (project) => {
   let dateRange = genterateWeekDomain(DATE_RANGE[project].START, DATE_RANGE[project].END);
   return {
     reqExpect: getCombined(dateRange, EXPECT_OFFER_TREND[project]),
-    //reqReal: getCombined(dateRange, getRealOfferArray(project)),
+    reqReal: getCombined(dateRange, getRealOfferArray(project)),
     onboardReal: getCombined(dateRange, getRealOnboardArray(project))
+
   }
 }
 
@@ -33,7 +35,14 @@ function getCombined(dates, values) {
 }
 
 function getRealOfferArray(project) {
-  return fs.readFileSync(filePath[project], 'utf-8').split('\n').filter(a => a).map(a => Number(a));
+  let arr = [];
+  try {
+    arr = fs.readFileSync(filePath[project], 'utf-8').split('\n').filter(a => a).map(a => Number(a));
+  } catch(e) {
+    // we do not serve persist file in dev mode
+    console.log(e);
+  }
+  return arr;
 }
 
 function getRealOnboardArray(project) {
