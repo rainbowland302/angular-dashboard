@@ -29,7 +29,7 @@ export const getNextSunday = (dateArray) => {
       }
       else date = new Date((t - (25567 + 2)) * 86400 * 1000) // windows + 2
 
-      let nextSunday = new Date(date  - (-1000 * 3600 * 24 * (7 - date.getDay())));
+      let nextSunday = new Date(date.getTime() + 1000 * 3600 * 24 * (7 - date.getDay()));
       return `${nextSunday.getMonth() + 1}/${nextSunday.getDate()}`
     }).filter(t => t);
 }
