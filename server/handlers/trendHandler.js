@@ -1,7 +1,7 @@
 import xlsx from 'node-xlsx';
 import fs from 'fs';
 
-import { genterateWeekDomain, getTargetColumn, getLastSunday, reduceByDate } from './utils/tools'
+import { genterateWeekDomain, getTargetColumn, getNextSunday, reduceByDate} from './utils/tools'
 import { EXPECT_OFFER_TREND, DATE_RANGE } from './utils/constants';
 
 const filePath = {
@@ -61,7 +61,7 @@ function getRealOnboardArray(project) {
 function getProjectOnboardArray(project){
   const reqRawData = xlsx.parse(reqTrackFilePath[project])[1].data;
   let onBoardRawData = getTargetColumn(reqRawData, 'On Board Date');
-  let customizedOnBoardData = getLastSunday(onBoardRawData.sort());
+  let customizedOnBoardData = getNextSunday(onBoardRawData.sort());
   let reducedOnboardData = reduceByDate(customizedOnBoardData);
   let dateToday = new Date();
   let dateRange = genterateWeekDomain(DATE_RANGE[project].START, dateToday);
