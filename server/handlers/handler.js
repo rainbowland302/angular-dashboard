@@ -75,7 +75,7 @@ function getTeam(project) {
     return [...getTeam('ecs'), ...getTeam('isilon')];
   }
   return mergeGroup([...reqHandler(project), ...candidatesHandler(project) ], DEFAULTS)
-    .map(a => Object.assign({},a, { filled: a.offered + a.onboard, total: a.open + a.offered + a.onboard } ));
+    .map(a => Object.assign({},a, { filled: a.offered , total: a.open + a.offered } ));
 }
 
 // Merge the all keys into its corresponding group name without duplicate.
