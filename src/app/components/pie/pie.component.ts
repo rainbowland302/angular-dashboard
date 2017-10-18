@@ -15,7 +15,7 @@ export class PieComponent implements OnChanges{
 
   // onboard, offered, open
   colorScheme = {
-    domain: ['green', 'deepskyblue', 'lightgray']
+    domain: ['deepskyblue', 'lightgray']
   };
   // pie
   showLabels = false;

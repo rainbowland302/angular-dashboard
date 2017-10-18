@@ -1,4 +1,6 @@
-export const OVERVIEW_STATUS = [{ name: 'Onboard', value: 0 }, { name: 'Offered', value: 0 }, { name: 'Opened Reqs', value: 0 }];
+export const OVERVIEW_STATUS = [{ name: 'Offered', value: 0 }, { name: 'Opened Reqs', value: 0 }];
+export const OVERVIEW_STATUS_KEYS = ['offered', 'open'];
+
 export const ISILON_TEAM_HEADER = [
   { key: 'total', value: 'Total Reqs' },
   { key: 'cv', value: 'Resume Uploaded' },
@@ -20,7 +22,7 @@ export const TEAM_HEADER = [
   { key: 'reject', value: 'Failed' },
  // { key: 'hirable', value: 'Hirable'},
   { key: 'offered', value: 'Offered' },
- // { key: 'onboard', value: 'Onboard' },
+  { key: 'onboard', value: 'Onboard' },
 ];
 
 export const HIGHLIGHT_HEADER = [
@@ -39,5 +41,3 @@ export const ISILON_HIGHLIGHT_HEADER = [
   { key: 'ttf', value: 'TTF' },
   ...ISILON_TEAM_HEADER
 ];
-
-export const OVERVIEW_STATUS_KEYS = ['onboard', 'offered', 'open'];

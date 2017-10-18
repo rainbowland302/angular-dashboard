@@ -38,7 +38,6 @@ function getOverview(project){
   let overview = getAllValueSum(groupOverall);
   return {
     status: {
-      onboard: overview.onboard,
       offered: overview.offered,
       open: overview.open
     },

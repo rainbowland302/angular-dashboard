@@ -22,4 +22,16 @@
     width: 100px;
     padding: 10px;
   }
+  div.legend{
+    span:nth-of-type(1){
+      &:before{
+        @include legend-color(2)
+      }
+    };
+     span:nth-of-type(2){
+      &:before{
+        @include legend-color(3)
+      }
+    };
+  }
 }
