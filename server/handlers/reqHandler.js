@@ -13,6 +13,7 @@ const filePath = {
 const GROUP = 'Group';
 const STATUS = 'Hiring Status';
 const NUMBER = 'Req Number';
+const ONBOARD = 'On Board Date';
 
 export const reqHandler = (project) => {
   const rawData = removeBlockRows(xlsx.parse(filePath[project])[1].data, BLACK_LIST);
@@ -20,9 +21,10 @@ export const reqHandler = (project) => {
       return GROUP_MAP[str] || str;
     }),
     status = getTargetColumn(rawData, STATUS),
-    number = getTargetColumn(rawData, NUMBER);
+    number = getTargetColumn(rawData, NUMBER),
+    onboard = getTargetColumn(rawData, ONBOARD);
   return flatGroup(['onboard', 'offered', 'open'],
-    reduceByGroup(groupArray, [status], isOnboard),
+    reduceByGroup(groupArray, [onboard], isOnboard),
     reduceByGroup(groupArray, [status], isOffered),
     reduceByGroup(groupArray, [status, number], isOpen)
   );

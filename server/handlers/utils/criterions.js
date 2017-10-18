@@ -2,7 +2,7 @@ const DAY = 3600 * 24 * 1000;
 const HOUR8 = 3600 * 8 * 1000;
 const COMPENSATION = 1.5;
 
-export const isOnboard = status => typeof status === 'string' && status.toLowerCase().indexOf('board') >= 0;
+export const isOnboard = date => date && isPastDate(date);
 export const isOffered = status => typeof status === 'string' && status.toLowerCase().indexOf('offer') >= 0;
 export const isOpen = (status, number) => typeof number === 'string' && number && !isOnboard(status) && !isOffered(status);
 export const isCV = date => date;

@@ -109,7 +109,7 @@ export class ProductComponent implements OnInit {
     this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect, onboardReal }) => {
         this.reqTrend = [{
-          name: 'Trend',
+          name: 'Offered',
           series: reqReal || reqExpect
         }, {
           name: 'Forecast',

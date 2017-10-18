@@ -20,7 +20,7 @@ export class LineComponent {
   curve = d3.curveBasis;
 
   colorScheme = {
-    domain: ['green', 'deepskyblue', 'pink', 'pink']
+    domain: ['green', 'deepskyblue', 'saddlebrown', 'saddlebrown']
   };
 
   // line, area
