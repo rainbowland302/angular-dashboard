@@ -51,10 +51,10 @@ ngx-charts-line-chart {
 
 // pseudo highlight object
 .isilon-wrapper .overview-trend ngx-charts-line-chart {
-  @include highlight(22%, 52%, 'Q3 FY18 \A Forecast: 22');
+  @include highlight(17%, 58%, 'Q3 FY18 \A Forecast: 24');
 }
 .isilon-wrapper .overview-trend .highlight-wrapper {
-  @include highlight(-18%, 90%, ' Q4 FY18 \A Forecast: 43');
+  @include highlight(-11%, 85%, ' Q4 FY18 \A Forecast: 39');
 }
 // pseudo highlight object
 .ecs-wrapper .overview-trend ngx-charts-line-chart {
