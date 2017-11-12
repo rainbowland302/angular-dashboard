@@ -29,7 +29,9 @@ export class DashboardService {
   getOverview(state): Promise<any> {
     return this._getJSON(`${API_BASE_URL}/api/${state}/overview`);
   }
-
+  getTeamNew(state): Promise<any> {
+    return this._getJSON(`${API_BASE_URL}/api/${state}/teamnew`);
+  }
   getTeam(state): Promise<any> {
     return this._getJSON(`${API_BASE_URL}/api/${state}/team`);
   }

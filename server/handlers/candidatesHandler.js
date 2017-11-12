@@ -1,8 +1,8 @@
 import xlsx from 'node-xlsx';
 
-import { getTargetColumn, reduceByGroup, isPastDate, flatGroup, getIntervalByGroup } from './utils/tools';
+import { getTargetColumn, reduceByGroup, reduceByGroupAndQuarter, isPastDate, flatGroup, getIntervalByGroup } from './utils/tools';
 import { GROUP_MAP } from './utils/constants';
-import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isTPReject, isOnsiteReject, isOffered, isOnsitePoolAugust, getIntervalDay } from './utils/criterions';
+import { isCV, isResume, isPhone, isOnsite, isReject, isResumeReject, isPhoneReject, isTPReject, isOnsiteReject, isOffered, isOnsitePoolAugust, getIntervalDay, getQuarter } from './utils/criterions';
 
 const GROUP = 'Group';
 const RESUME = 'CV Upload Date';
@@ -10,6 +10,7 @@ const PHONE = 'Phone Interview Time';
 const ONSITE = 'Onsite Interview Time';
 const TP = 'TP Interview Time';
 const STATUS = 'Interview Status';
+const CVUPLOAD = 'CV Upload Date';
 
 const filePath = {
   isilon: require('path').resolve(__dirname, '../assets/Isilon Hiring Candidates Track Sheet.xlsx'),
@@ -28,26 +29,29 @@ export const candidatesHandler = (project) => {
     onsite = getTargetColumn(rawData, ONSITE),
     status = getTargetColumn(rawData, STATUS),
     flatPhone = flatTime(phone, resume, tp, onsite),
-    flatTP = flatTime(tp, flatPhone, onsite);
+    flatTP = flatTime(tp, flatPhone, onsite),
+    quarterArray = getTargetColumn(rawData, CVUPLOAD).map(date=>{
+      return getQuarter(date);
+    });
   return flatGroup(['cv', 'resume', 'phone', 'onsite', 'reject', 'resumeReject', 'phoneReject', 'tpReject', 'onsiteReject', 'hirable', 'onsitePoolAugust',
     'cvPhone', 'phoneTP', 'TPOnsite', 'cvTP', 'cvOnsite', 'phoneOnsite'],
-    reduceByGroup(groupArray, [resume], isCV),
-    reduceByGroup(groupArray, [resume, status], isResume),
-    reduceByGroup(groupArray, [phone], isPhone),
-    reduceByGroup(groupArray, [onsite, tp], isOnsite),
-    reduceByGroup(groupArray, [status], isReject),
-    reduceByGroup(groupArray, [status, resume, phone, tp, onsite], isResumeReject),
-    reduceByGroup(groupArray, [status, phone, tp, onsite], isPhoneReject),
-    reduceByGroup(groupArray, [status, tp, onsite], isTPReject),
-    reduceByGroup(groupArray, [status, onsite], isOnsiteReject),
-    reduceByGroup(groupArray, [status], isOffered),
-    reduceByGroup(groupArray, [status], isOnsitePoolAugust),
-    getIntervalByGroup(groupArray, [resume, phone], getIntervalDay),
-    getIntervalByGroup(groupArray, [phone, flatTP], getIntervalDay),
-    getIntervalByGroup(groupArray, [flatTP, onsite], getIntervalDay),
-    getIntervalByGroup(groupArray, [resume, flatTP], getIntervalDay),
-    getIntervalByGroup(groupArray, [resume, onsite], getIntervalDay),
-    getIntervalByGroup(groupArray, [phone, onsite], getIntervalDay),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [resume], isCV),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [resume, status], isResume),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [phone], isPhone),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [onsite, tp], isOnsite),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status], isReject),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status, resume, phone, tp, onsite], isResumeReject),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status, phone, tp, onsite], isPhoneReject),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status, tp, onsite], isTPReject),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status, onsite], isOnsiteReject),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status], isOffered),
+    reduceByGroupAndQuarter(groupArray, quarterArray, [status], isOnsitePoolAugust),
+    getIntervalByGroup(groupArray, quarterArray, [resume, phone], getIntervalDay),
+    getIntervalByGroup(groupArray, quarterArray,[phone, flatTP], getIntervalDay),
+    getIntervalByGroup(groupArray, quarterArray,[flatTP, onsite], getIntervalDay),
+    getIntervalByGroup(groupArray, quarterArray, [resume, flatTP], getIntervalDay),
+    getIntervalByGroup(groupArray, quarterArray, [resume, onsite], getIntervalDay),
+    getIntervalByGroup(groupArray, quarterArray, [phone, onsite], getIntervalDay),
   );
 };
 

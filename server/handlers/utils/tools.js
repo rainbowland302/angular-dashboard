@@ -6,6 +6,12 @@ export const removeBlockRows = (data, list) => data.filter(row => list.filter(nu
   else return false
 }).length === 0);
 
+export const removeInvalidRows = (data, validCriterion) => data.filter(
+   row =>{
+     validCriterion.apply(null,row["ReqNumber"], row[""] )
+   }
+)
+
 // @param data: any[][]
 // @param columnName: string
 // return any[]
@@ -15,6 +21,23 @@ export const getTargetColumn = (data, columnName) => {
     columnIndex = headers.indexOf(columnName);
   return values.map(row => typeof row[columnIndex] === 'string' ? row[columnIndex].trim() : row[columnIndex]);
 }
+
+// @param data: any[][]
+// @param columnArray[]
+// return any[][]
+export const getTargetColumns = (data, columnArray) => {
+  let headers = data[0],
+      res = [],
+      values = data.slice(1);
+  columnArray.forEach(columnName => {
+      let columnIndex = headers.indexOf(columnName);
+      let targetColumn = values.map(row => typeof row[columnIndex] === 'string' ? row[columnIndex].trim() : row[columnIndex]);
+      res.push(targetColumn);
+       
+    })
+  return res;
+}
+
 
 // @param dateArray: string|number[]
 // return 'xx/xx'[]
@@ -72,11 +95,11 @@ export const reduceByDate = (dateArray) => {
 }
 
 // @param keys: string[]
-// @param args: { name: string, value: number }[][]
+// @param args: { name: string, season:string, value: number }[][]
 // return {name: string, ..obj}[]
 export const flatGroup = (keys, ...args) => {
-  return args[0].map(({name}, groupIndex) => {
-    let group = { name };
+  return args[0].map(({name, season}, groupIndex) => {
+    let group = { name, season };
     keys.forEach((key, i) => {
       group[key] = args[i][groupIndex].value;
     });
@@ -97,17 +120,44 @@ export const reduceByGroup = (group, columns, criterion) => {
   }, res);
 }
 
-export const getIntervalByGroup = (group, columns, criterion) => {
-  let res = [...new Set(group.filter(s => s))].map( a => ({ name: a, value: 0, count: 0 }) );
+// @param group: string[]
+//@param quarter: string[]
+// @param columns: string|number[][]
+// @param criterion: (data?: string|number[]): boolean => {}
+// return { name: string, season: string, value: number }[]
+export const reduceByGroupAndQuarter= (group, quarter, columns, criterion) => {
+  let res = [... new Set(group.filter(s=>s))].map(a => {
+    return [...new Set(quarter.filter(f=>f))].map(q=>({name:a, season:q, value:0}))
+  });
+  let resFlat = [].concat(...res);
+  return group.reduce((a,b,i) => {
+    let resIndex = a.findIndex(({name, season }) => {
+      return name ===b && season === quarter[i]
+    });
+    if(resIndex !== -1){
+      a[resIndex].value += criterion.apply(null, columns.map(column => column[i])) ? 1:0;
+    }
+    return a;
+  }, resFlat);
+}
+
+export const getIntervalByGroup = (group, quarter, columns, criterion) => {
+  let res = [...new Set(group.filter(s => s))].map( a =>{
+    return [...new Set(quarter.filter(f=>f))].map(q=>({name:a, season:q, value:0, count:0}))
+  } );
+  let resFlat = [].concat(...res);
   return group
-    .filter(s => s)
     .reduce((a, b, i) => {
-      let resIndex = a.findIndex(({name}) => name === b),
-      cur = criterion.apply(null, columns.map(column => column[i]));
-      a[resIndex].value += cur;
-      if (cur !== null) a[resIndex].count ++;
+      let resIndex = a.findIndex(({name, season}) => {
+         return name ===b && season === quarter [i];
+      });
+      if(resIndex!== -1){
+        let cur = criterion.apply(null, columns.map(column => column[i]));
+        a[resIndex].value += cur;
+        if (cur !== null) a[resIndex].count ++;
+      }
       return a;
-    }, res)
+    }, resFlat)
     .map( a => {
       if(a.count) a.value = Number((a.value / a.count).toFixed(1));
       delete a.count;

@@ -6,6 +6,10 @@ export const GROUP_MAP = {
   'IME Sustaining': 'IME Sus',
   'One FS & Data Services': 'Data Management'
 };
+export const QUARTER_MAP = {
+  "Q3 '18" : 'Q3',
+  "Q4 '18" : 'Q4'
+}
 
 export const EXPECT_OFFER_TREND = {
   isilon: [0, 0, 0, 0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 16, 18, 22, 23, 24, 25, 26, 27, 29, 31, 33, 35, 37, 39, 41, 43],

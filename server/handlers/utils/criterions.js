@@ -4,7 +4,7 @@ const COMPENSATION = 1.5;
 
 export const isOnboard = date => date && isPastDate(date);
 export const isOffered = status => typeof status === 'string' && status.toLowerCase().indexOf('offer') >= 0;
-export const isOpen = (status, number) => typeof number === 'string' && number && !isOnboard(status) && !isOffered(status);
+export const isOpen = (status, number, idinwd) => ((typeof number === 'string' && number) || (typeof idinwd === 'string' && idinwd)) && !isOnboard(status) && !isOffered(status);
 export const isCV = date => date;
 export const isResume = (cvDate, status) => cvDate && !!status;
 export const isPhone = date => date && isPastDate(date);
@@ -45,4 +45,19 @@ const getWorkDayPeriod = (start, end) => {
     nextSaturday = new Date(endDate.getTime() + DAY * (6 - endDate.getDay()) );
   let weekendDays =  Math.floor( (nextSaturday - lastSunday) / DAY / 7) * 2;
   return (endDate - startDate) / DAY - weekendDays + COMPENSATION;
+}
+// determine  in which quarter that cv is uploaded
+export const getQuarter = date => {
+  let uploadDate = parseDate(date),
+      month = uploadDate.getMonth() + 1;
+  switch(true) {
+    case [1,2,3].includes(month):
+         return 'Q1';
+    case [4,5,6].includes(month):
+         return 'Q2';
+    case [7,8,9].includes(month):
+         return 'Q3';
+    case [10,11,12].includes(month):
+        return 'Q4';
+  }
 }

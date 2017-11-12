@@ -16,6 +16,11 @@ apiRoutes.get('/:project/overview',(req, res) => {
   let requirements = handler.getOverview(project);
   res.json(requirements);
 })
+apiRoutes.get('/:project/teamnew',(req, res) => {
+  let project = req.url.split('/')[1];
+  let requirements = handler.getTeamNew(project);
+  res.json(requirements);
+})
 
 apiRoutes.get('/:project/team',(req, res) => {
   let project = req.url.split('/')[1];

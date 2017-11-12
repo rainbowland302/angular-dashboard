@@ -29,16 +29,19 @@ export class ProductComponent implements OnInit {
   //public localState = { value: 'isilon' };
 
   onOpenDialog(index) {
-    let raw = Object.assign({}, this.teamDetail[index]);
-    raw.resume = `${raw.resumeReject}/${raw.resume}`;
-    raw.phone = `${raw.phoneReject}/${raw.phone}`;
-    raw.onsite = `${raw.tpReject + raw.onsiteReject}/${raw.onsite}`;
+    let rawdata = Object.assign({}, this.teamDetail[index]);
+    rawdata.groups.map(raw=>{
+      raw.resume = `${raw.resumeReject}/${raw.resume}`;
+      raw.phone = `${raw.phoneReject}/${raw.phone}`;
+      raw.onsite = `${raw.tpReject + raw.onsiteReject}/${raw.onsite}`;
+      return raw;
+    })
     let dialogRef = this.dialog.open(TeamDetailDialogComponent, {
       data: {
-        title: raw.name,
-        value: `${raw.filled}/${raw.total}`,
+        title: rawdata.name,
+        value: `${rawdata.filled}/${rawdata.total}`,
         tableHeader: this.localState.value === 'isilon' ? ISILON_TEAM_HEADER : TEAM_HEADER,
-        tableContent: [raw]
+        tableContent: rawdata.groups
       }
     });
   }
@@ -69,26 +72,29 @@ export class ProductComponent implements OnInit {
           a.value = status[OVERVIEW_STATUS_KEYS[i]];
           return a;
         });
-        highlight.resume = `${highlight.resumeReject}/${highlight.resume}`;
-        highlight.phone = `${highlight.phoneReject}/${highlight.phone}`;
-        highlight.onsite = `${highlight.tpReject + highlight.onsiteReject}/${highlight.onsite}`;
-        this.highlightContent = [highlight];
+        highlight.map(h=>{
+          h.resume = `${h.resumeReject}/${h.resume}`;
+          h.phone = `${h.phoneReject}/${h.phone}`;
+          h.onsite = `${h.tpReject + h.onsiteReject}/${h.onsite}`;
+          return h;
+        })
+        this.highlightContent = highlight;
       });
 
-    this.dashboardService.getTeam(this.localState.value).then(teamArray => {
+    this.dashboardService.getTeamNew(this.localState.value).then(teamArray => {
       this.barData = teamArray
-        .map(({ name, onboard, offered, open, filled, total, resume, phone, onsite }) => {
-          return [{
-            name,
-            series: [{
-              name: 'Filled',
-              value: filled
-            }, {
-              name: 'Open',
-              value: open
-            }]
+      .map(({name, filled, open, groups})=>{
+        return [{
+          name,
+          series:[{
+            name:'Filled',
+            value:filled
+          },{
+            name:'Open',
+            value:open
           }]
-        })
+        }]
+      })
         .reduce((a, b, i) => {
           if (i % 3 === 0) return [...a, [b]]
           else {
@@ -97,14 +103,24 @@ export class ProductComponent implements OnInit {
           }
         }, []);
       this.teamDetail = teamArray;
+      // this.teamDetailContent = teamArray.map((team)=>{
+      //   let teamDetail = Object.assign({}, team);
+      //   teamDetail.resume = `${team.resumeReject}/${team.resume}`;
+      //   teamDetail.phone = `${team.phoneReject}/${team.phone}`;
+      //   teamDetail.onsite = `${team.tpReject + team.onsiteReject}/${team.onsite}`;
+      //   return teamDetail;
+      // });
+    });
+    this.dashboardService.getTeam(this.localState.value).then(teamArray=>{
+     // this.teamDetail = teamArray;
       this.teamDetailContent = teamArray.map((team)=>{
         let teamDetail = Object.assign({}, team);
         teamDetail.resume = `${team.resumeReject}/${team.resume}`;
         teamDetail.phone = `${team.phoneReject}/${team.phone}`;
         teamDetail.onsite = `${team.tpReject + team.onsiteReject}/${team.onsite}`;
         return teamDetail;
-      });
-    });
+      })
+    })
 
     this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect, onboardReal }) => {
