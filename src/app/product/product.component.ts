@@ -30,7 +30,8 @@ export class ProductComponent implements OnInit {
 
   onOpenDialog(index) {
     let rawdata = Object.assign({}, this.teamDetail[index]);
-    rawdata.groups.map(raw=>{
+    let groups = JSON.parse(JSON.stringify(rawdata.groups));
+    groups.map(raw=>{
       raw.resume = `${raw.resumeReject}/${raw.resume}`;
       raw.phone = `${raw.phoneReject}/${raw.phone}`;
       raw.onsite = `${raw.tpReject + raw.onsiteReject}/${raw.onsite}`;
@@ -41,7 +42,7 @@ export class ProductComponent implements OnInit {
         title: rawdata.name,
         value: `${rawdata.filled}/${rawdata.total}`,
         tableHeader: this.localState.value === 'isilon' ? ISILON_TEAM_HEADER : TEAM_HEADER,
-        tableContent: rawdata.groups
+        tableContent: groups
       }
     });
   }
@@ -103,24 +104,22 @@ export class ProductComponent implements OnInit {
           }
         }, []);
       this.teamDetail = teamArray;
-      // this.teamDetailContent = teamArray.map((team)=>{
-      //   let teamDetail = Object.assign({}, team);
-      //   teamDetail.resume = `${team.resumeReject}/${team.resume}`;
-      //   teamDetail.phone = `${team.phoneReject}/${team.phone}`;
-      //   teamDetail.onsite = `${team.tpReject + team.onsiteReject}/${team.onsite}`;
-      //   return teamDetail;
-      // });
+      let detailContent = teamArray.map(team=>{
+        let rawdata = Object.assign({},team);
+        let groups = JSON.parse(JSON.stringify(rawdata.groups));
+        return groups.map((raw, index)=>{
+          if(index!==0){
+            raw.name ='';
+          }
+          raw.resume = `${raw.resumeReject}/${raw.resume}`;
+          raw.phone = `${raw.phoneReject}/${raw.phone}`;
+          raw.onsite = `${raw.tpReject + raw.onsiteReject}/${raw.onsite}`;
+          return raw;
+        });
+      });
+      this.teamDetailContent = [].concat(...detailContent);
+
     });
-    this.dashboardService.getTeam(this.localState.value).then(teamArray=>{
-     // this.teamDetail = teamArray;
-      this.teamDetailContent = teamArray.map((team)=>{
-        let teamDetail = Object.assign({}, team);
-        teamDetail.resume = `${team.resumeReject}/${team.resume}`;
-        teamDetail.phone = `${team.phoneReject}/${team.phone}`;
-        teamDetail.onsite = `${team.tpReject + team.onsiteReject}/${team.onsite}`;
-        return teamDetail;
-      })
-    })
 
     this.dashboardService.getTrend(this.localState.value)
       .then(({ reqReal, reqExpect, resumeReal, resumeExpect, interviewReal, interviewExpect, onboardReal }) => {

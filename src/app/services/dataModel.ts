@@ -2,7 +2,7 @@ export const OVERVIEW_STATUS = [{ name: 'Offered', value: 0 }, { name: 'Opened R
 export const OVERVIEW_STATUS_KEYS = ['offered', 'open'];
 
 export const ISILON_TEAM_HEADER = [
-  { key: 'season', value: 'Quarter'},
+  { key: 'season', value: 'Qtr(FY)'},
   { key: 'total', value: 'Total Reqs' },
   { key: 'cv', value: 'Resume Uploaded' },
   { key: 'resume', value: 'Resume Screened' },
