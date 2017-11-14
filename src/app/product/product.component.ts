@@ -77,6 +77,7 @@ export class ProductComponent implements OnInit {
           h.resume = `${h.resumeReject}/${h.resume}`;
           h.phone = `${h.phoneReject}/${h.phone}`;
           h.onsite = `${h.tpReject + h.onsiteReject}/${h.onsite}`;
+          h.ttf = 'N/A';
           return h;
         })
         this.highlightContent = highlight;

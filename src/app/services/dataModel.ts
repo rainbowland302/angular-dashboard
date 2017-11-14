@@ -15,6 +15,7 @@ export const ISILON_TEAM_HEADER = [
   { key: 'onboard', value: 'Onboard' },
 ];
 export const TEAM_HEADER = [
+  { key: 'season', value: 'Required Qtr'},
   { key: 'total', value: 'Total Reqs' },
   { key: 'cv', value: 'Resume Uploaded' },
   { key: 'resume', value: 'Resume Screened' },

@@ -52,12 +52,12 @@ export const getQuarter = date => {
       month = uploadDate.getMonth() + 1;
   switch(true) {
     case [1,2,3].includes(month):
-         return 'Q1';
+         return 'FY18 Q1';
     case [4,5,6].includes(month):
-         return 'Q2';
+         return 'FY18 Q3';
     case [7,8,9].includes(month):
-         return 'Q3';
+         return 'FY18 Q3';
     case [10,11,12].includes(month):
-        return 'Q4';
+        return 'FY18 Q4';
   }
 }

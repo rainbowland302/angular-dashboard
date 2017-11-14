@@ -15,7 +15,8 @@ const STATUS = 'Hiring Status';
 const NUMBER = 'Req Number';
 const ONBOARD = 'On Board Date';
 const  IDINWD = 'ID in WD';
-const QUARTER = 'Qtr (FY)';
+const QUARTERI = 'Qtr (FY)';
+const QUARTERE = 'Required Qtr';
 const CVDATE = 'CV Upload Date';
 
 export const reqHandler = (project) => {
@@ -23,13 +24,18 @@ export const reqHandler = (project) => {
     let groupArray = getTargetColumn(rawData, GROUP).map( str => {
       return GROUP_MAP[str] || str;
     }),
-        quarterArray = getTargetColumn(rawData, QUARTER).map( str =>{
+        quarterArray = getTargetColumn(rawData, QUARTERI).map( str =>{
       return QUARTER_MAP[str] || str;
     }),
         status = getTargetColumn(rawData, STATUS),
         number = getTargetColumn(rawData, NUMBER),
         onboard = getTargetColumn(rawData, ONBOARD),
         idinwd = getTargetColumn(rawData, IDINWD);
+    if (quarterArray.length ===0){
+      quarterArray = getTargetColumn(rawData, QUARTERE).map( str =>{
+        return QUARTER_MAP[str] || str;
+      });
+    }
   return flatGroup(['onboard', 'offered', 'open'],
     reduceByGroupAndQuarter(groupArray,quarterArray, [onboard], isOnboard),
     reduceByGroupAndQuarter(groupArray,quarterArray, [status], isOffered),

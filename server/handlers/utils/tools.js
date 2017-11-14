@@ -19,6 +19,7 @@ export const getTargetColumn = (data, columnName) => {
   let headers = data[0],
     values = data.slice(1),
     columnIndex = headers.indexOf(columnName);
+  if (columnIndex === -1) return [];
   return values.map(row => typeof row[columnIndex] === 'string' ? row[columnIndex].trim() : row[columnIndex]);
 }
 

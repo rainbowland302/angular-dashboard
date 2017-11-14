@@ -7,8 +7,11 @@ export const GROUP_MAP = {
   'One FS & Data Services': 'Data Management'
 };
 export const QUARTER_MAP = {
-  "Q3 '18" : 'Q3',
-  "Q4 '18" : 'Q4'
+  "Q3 '18" : 'FY18 Q3',
+  "Q4 '18" : 'FY18 Q4',
+  "Q3'FY18" : 'FY18 Q3',
+  "Q4'FY18" : 'FY18 Q4',
+  "Q1'FY19" : 'FY19 Q1'
 }
 
 export const EXPECT_OFFER_TREND = {
