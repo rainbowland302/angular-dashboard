@@ -2,6 +2,7 @@ export const OVERVIEW_STATUS = [{ name: 'Offered', value: 0 }, { name: 'Opened R
 export const OVERVIEW_STATUS_KEYS = ['offered', 'open'];
 
 export const ISILON_TEAM_HEADER = [
+  { key: 'season', value: 'Qtr(FY)'},
   { key: 'total', value: 'Total Reqs' },
   { key: 'cv', value: 'Resume Uploaded' },
   { key: 'resume', value: 'Resume Screened' },
@@ -14,6 +15,7 @@ export const ISILON_TEAM_HEADER = [
   { key: 'onboard', value: 'Onboard' },
 ];
 export const TEAM_HEADER = [
+  { key: 'season', value: 'Required Qtr'},
   { key: 'total', value: 'Total Reqs' },
   { key: 'cv', value: 'Resume Uploaded' },
   { key: 'resume', value: 'Resume Screened' },
@@ -38,6 +40,6 @@ export const ISILON_TEAM_DETAIL_HEADER = [
   ...ISILON_TEAM_HEADER
 ];
 export const ISILON_HIGHLIGHT_HEADER = [
-  //{ key: 'ttf', value: 'TTF' },
+  { key: 'ttf', value: 'TTF' },
   ...ISILON_TEAM_HEADER
 ];
